@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { LojaComponent } from './pages/loja/loja.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
+import { SharedModule } from 'src/shared/shared.module';
+import { HttpService } from 'src/shared/services/httpService/http.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +18,10 @@ import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [HttpService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
