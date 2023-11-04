@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { LojaService } from './lojaService/loja.service';
 
 @Component({
   selector: 'app-loja',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class LojaComponent {
 
+  constructor(public srv: LojaService){
+    console.log(srv.getProdutos())
+  }
 }
