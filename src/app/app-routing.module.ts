@@ -4,8 +4,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { LojaComponent } from './pages/loja/loja.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
+import { CadastroComponent } from './pages/cadastro/cadastro.component';
+import { LoginComponent } from './pages/login/login.component';
 
 const routes: Routes = [
+  {
+    path: "cadastro", component: CadastroComponent
+  },
+  {
+    path: "login", component: LoginComponent
+  },
   {
     path: "loja", component: LojaComponent
   },
