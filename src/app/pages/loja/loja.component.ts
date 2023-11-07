@@ -9,6 +9,9 @@ import { LojaService } from './lojaService/loja.service';
 export class LojaComponent {
 
   constructor(public srv: LojaService){
-    console.log(srv.getProdutos())
+    srv.getProdutos().subscribe(
+    (response) => {
+      console.log(response)
+    })
   }
 }

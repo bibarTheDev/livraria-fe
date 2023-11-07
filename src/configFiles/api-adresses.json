@@ -1,0 +1,19 @@
+{
+    "url": "localhost:5000/livraria-ecom/",
+    "endpoints": {
+        "ping": "",
+        "login": "login",
+        "usuario": "usuario/$cpf",
+        "usuarioCadastro": "usuario/",
+        "usuarioEnderecos": "usuario/$cpf/enderecos",
+        "autores": "estoque/autores",
+        "editoras": "estoque/editoras",
+        "livros": "estoque",
+        "livrosPreco": "estoque/$isbn/alterar-preco",
+        "carrinho": "venda/carrinho",
+        "carrinhoPagamento": "venda/carrinho/$codigo/pagamento",
+        "relatorioLivros": "estoque/relatorio",
+        "relatorioUsuario": "usuario/relatorio",
+        "relatorioVenda": "venda/relatorio"
+    }
+}

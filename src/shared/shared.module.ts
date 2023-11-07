@@ -8,7 +8,7 @@ import { HttpService } from './services/httpService/http.service';
   declarations: [
   ],
   imports: [
-    CommonModule,
+    CommonModule
   ],
   exports: [
   ]

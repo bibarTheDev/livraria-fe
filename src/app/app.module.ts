@@ -8,6 +8,7 @@ import { ProdutoComponent } from './pages/produto/produto.component';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
 import { SharedModule } from 'src/shared/shared.module';
 import { HttpService } from 'src/shared/services/httpService/http.service';
+import { HttpClientModule } from '@angular/common/http'
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { HttpService } from 'src/shared/services/httpService/http.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    SharedModule
+    SharedModule,
+    HttpClientModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

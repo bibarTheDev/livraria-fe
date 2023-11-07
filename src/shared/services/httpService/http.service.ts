@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,25 +6,25 @@ import { Injectable } from '@angular/core';
 })
 export class HttpService {
 
-  constructor() { }
+  constructor(public http: HttpClient) { }
 
-  get(a: string){
-    return "got " + a;
+  get(url: string){
+    return this.http.get(url)
+  } 
+  
+  post(url: string){
+    return ;
   }
   
-  post(a: string){
-    return "posted " + a;
+  put(url: string){
+    return ;
   }
   
-  put(a: string){
-    return "put " + a;
+  patch(url: string){
+    return ;
   }
   
-  patch(a: string){
-    return "patched " + a;
-  }
-  
-  delete(a: string){
-    return "deleted " + a;
+  delete(url: string){
+    return ;
   }
 }
