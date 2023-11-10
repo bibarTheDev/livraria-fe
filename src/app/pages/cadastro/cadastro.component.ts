@@ -9,7 +9,6 @@ import { CadastroService } from './cadastroService/cadastro.service';
 })
 export class CadastroComponent {
 
-  valido: Boolean = false;
   cadastro: Cadastro = {
     "cpf": "",
     "email": "",
@@ -26,103 +25,99 @@ export class CadastroComponent {
     "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" 
   ];
 
-  validador = new class {
-    cpf: boolean = false;
-    email: boolean = false;
-    nome: boolean = false;
-    telefone: boolean = false;
-    senha: boolean = false;
-    rua: boolean = false;
-    cep: boolean = false;
-    estado: boolean = false;
-    cidade: boolean = false;
+  validadeCadastro =  {
+    cpf: false,
+    email: false,
+    nome: false,
+    telefone: false,
+    senha: false,
+    rua: false,
+    cep: false,
+    estado: false,
+    cidade: false, 
+    all: false
+  }
 
-    validaCpf(value: String)
-    {
-      return this.cpf;
-    }
+  validaCpf() {
+    this.validadeCadastro.cpf = true;
+  }
 
-    validaEmail(value: String)
-    {
-      this.email = /^[a-z0-9.]+\@[a-z]+(\.[a-z]+)+$/gm.test(value.valueOf());
-    }
+  validaEmail() { 
+    this.validadeCadastro.email = /^[a-z0-9.]+\@[a-z]+(\.[a-z]+)+$/gm.test(this.cadastro.email.valueOf());
+    this.validadeCadastro.all = this.valida();
+  }
 
-    validaNome(value: String)
-    {
-      return true;
-    }
+  validaNome() { 
+    this.validadeCadastro.nome = true;
+    this.validadeCadastro.all = this.valida();
+  }
 
-    validaTelefone(value: String)
-    {
-      return true;
-    }
+  validaTelefone() { 
+    this.validadeCadastro.telefone = true;
+    this.validadeCadastro.all = this.valida();
+  }
 
-    validaSenha(value: String)
-    {
-      return true;
-    }
+  validaSenha() { 
+    this.validadeCadastro.senha = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(this.cadastro.senha.valueOf());
+    this.validadeCadastro.all = this.valida();
+  }
 
-    validaRua(value: String)
-    {
-      return true;
-    }
+  validaRua() { 
+    this.validadeCadastro.rua = true;
+    this.validadeCadastro.all = this.valida();
+  }
 
-    validaCep(value: String)
-    {
-      return true;
-    }
+  validaCep() { 
+    this.validadeCadastro.cep = true;
+    this.validadeCadastro.all = this.valida();
+  }
 
-    validaEstado(value: String, estados: String[])
-    {
-      return estados.includes(value);
-    }
+  validaEstado() { 
+    this.validadeCadastro.estado = this.listaEstados.includes(this.cadastro.estado); console.log(this.listaEstados, this.cadastro.estado)
+    this.validadeCadastro.all = this.valida();
+  }
 
-    validaCidade(value: String)
-    {
-      return true;
-    }
+  validaCidade() { 
+    this.validadeCadastro.cidade = true;
+    this.validadeCadastro.all = this.valida();
+  }
 
-    valida(): boolean
-    {
-      return this.cpf 
-        && this.email 
-        && this.nome 
-        && this.telefone 
-        && this.senha 
-        && this.rua 
-        && this.cep 
-        && this.estado 
-        && this.cidade 
-    }
+  valida(): boolean
+  {
+    return this.validadeCadastro.cpf 
+      && this.validadeCadastro.email 
+      && this.validadeCadastro.nome 
+      && this.validadeCadastro.telefone 
+      && this.validadeCadastro.senha 
+      && this.validadeCadastro.rua 
+      && this.validadeCadastro.cep 
+      && this.validadeCadastro.estado 
+      && this.validadeCadastro.cidade 
   }
 
   constructor(public srv: CadastroService) { }
 
-  
-
-  validar()
-  {
-    this.valido = true 
-  }
-
   cadastrar()
   {
-    if(!this.valido){
+    if(!this.valida()){
       return;
     }
     
     // para teste:
-    this.cadastro = {
-      "cpf": "12332155567",
-      "email": "teste@email.com",
-      "nome": "João da Silva",
-      "telefone": "11994485668",
-      "senha": "Abc@123",
-      "rua": "Rua Mangaratiba, 65",
-      "cep": "18136-191",
-      "estado": "SP",
-      "cidade": "São Roque"
-    }
+    // this.cadastro = {
+    //   "cpf": "12332155567",
+    //   "email": "teste@email.com",
+    //   "nome": "João da Silva",
+    //   "telefone": "11994485668",
+    //   "senha": "Abc@123",
+    //   "rua": "Rua Mangaratiba, 65",
+    //   "cep": "18136-191",
+    //   "estado": "SP",
+    //   "cidade": "São Roque"
+    // }
+  
+    console.log(this.cadastro);
+    return;
 
     this.srv.cadastrarUsuario(this.cadastro)
     .subscribe((response) => {
