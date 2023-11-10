@@ -1,47 +1,50 @@
 <div class="cadastro">
     <div class="cadastro__input">
-        <p class="cadastro__input__label">cpf</p>
-        <input [(ngModel)]="cadastro.cpf" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+        <p class="cadastro__input__label">CPF</p>
+        <input [(ngModel)]="cadastro.cpf" (keyup)="validar()" type="text" class="cadastro__input__text-box">
     </div>
     
     <div class="cadastro__input">
-        <p class="cadastro__input__label">email</p>
-        <input [(ngModel)]="cadastro.email" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+        <p class="cadastro__input__label">Email</p>
+        <input [(ngModel)]="cadastro.email" (keyup)="validar()" type="email" class="cadastro__input__text-box">
     </div>
     
     <div class="cadastro__input">
-        <p class="cadastro__input__label">nome</p>
-        <input [(ngModel)]="cadastro.nome" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+        <p class="cadastro__input__label">Nome</p>
+        <input [(ngModel)]="cadastro.nome" (keyup)="validar()" type="text" class="cadastro__input__text-box">
     </div>
     
     <div class="cadastro__input">
-        <p class="cadastro__input__label">telefone</p>
-        <input [(ngModel)]="cadastro.telefone" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+        <p class="cadastro__input__label">Telefone</p>
+        <input [(ngModel)]="cadastro.telefone" (keyup)="validar()" type="text" class="cadastro__input__text-box">
     </div>
     
     <div class="cadastro__input">
-        <p class="cadastro__input__label">senha</p>
-        <input [(ngModel)]="cadastro.senha" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+        <p class="cadastro__input__label">Senha</p>
+        <input [(ngModel)]="cadastro.senha" (keyup)="validar()" type="password" class="cadastro__input__text-box">
     </div>
     
     <div class="cadastro__input">
-        <p class="cadastro__input__label">rua</p>
-        <input [(ngModel)]="cadastro.rua" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+        <p class="cadastro__input__label">Rua</p>
+        <input [(ngModel)]="cadastro.rua" (keyup)="validar()" type="text" class="cadastro__input__text-box">
     </div>
     
     <div class="cadastro__input">
-        <p class="cadastro__input__label">cep</p>
-        <input [(ngModel)]="cadastro.cep" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+        <p class="cadastro__input__label">CEP</p>
+        <input [(ngModel)]="cadastro.cep" (keyup)="validar()" type="text" class="cadastro__input__text-box">
     </div>
     
     <div class="cadastro__input">
-        <p class="cadastro__input__label">estado</p>
-        <input [(ngModel)]="cadastro.estado" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+        <p class="cadastro__input__label">Estado</p>
+        <select [(ngModel)]="cadastro.estado" (click)="validar()" class="cadastro__input__select">
+            <option value=""> </option>
+            <option *ngFor="let e of listaEstados" value="e"> {{ e }} </option>
+        </select>
     </div>
     
     <div class="cadastro__input">
-        <p class="cadastro__input__label">cidade</p>
-        <input [(ngModel)]="cadastro.cidade" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+        <p class="cadastro__input__label">Cidade</p>
+        <input [(ngModel)]="cadastro.cidade" (keyup)="validar()" type="text" class="cadastro__input__text-box">
     </div>
 
     <div class="cadastro__input">

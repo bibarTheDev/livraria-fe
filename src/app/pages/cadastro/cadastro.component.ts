@@ -9,8 +9,8 @@ import { CadastroService } from './cadastroService/cadastro.service';
 })
 export class CadastroComponent {
 
-  public valido: Boolean = false;
-  public cadastro: Cadastro = {
+  valido: Boolean = false;
+  cadastro: Cadastro = {
     "cpf": "",
     "email": "",
     "nome": "",
@@ -21,12 +21,87 @@ export class CadastroComponent {
     "estado": "",
     "cidade": "",
   };
+  
+  listaEstados: String[] = [
+    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" 
+  ];
+
+  validador = new class {
+    cpf: boolean = false;
+    email: boolean = false;
+    nome: boolean = false;
+    telefone: boolean = false;
+    senha: boolean = false;
+    rua: boolean = false;
+    cep: boolean = false;
+    estado: boolean = false;
+    cidade: boolean = false;
+
+    validaCpf(value: String)
+    {
+      return this.cpf;
+    }
+
+    validaEmail(value: String)
+    {
+      this.email = /^[a-z0-9.]+\@[a-z]+(\.[a-z]+)+$/gm.test(value.valueOf());
+    }
+
+    validaNome(value: String)
+    {
+      return true;
+    }
+
+    validaTelefone(value: String)
+    {
+      return true;
+    }
+
+    validaSenha(value: String)
+    {
+      return true;
+    }
+
+    validaRua(value: String)
+    {
+      return true;
+    }
+
+    validaCep(value: String)
+    {
+      return true;
+    }
+
+    validaEstado(value: String, estados: String[])
+    {
+      return estados.includes(value);
+    }
+
+    validaCidade(value: String)
+    {
+      return true;
+    }
+
+    valida(): boolean
+    {
+      return this.cpf 
+        && this.email 
+        && this.nome 
+        && this.telefone 
+        && this.senha 
+        && this.rua 
+        && this.cep 
+        && this.estado 
+        && this.cidade 
+    }
+  }
 
   constructor(public srv: CadastroService) { }
 
+  
+
   validar()
   {
-    //validar de vdd dps
     this.valido = true 
   }
 
