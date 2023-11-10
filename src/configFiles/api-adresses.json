@@ -1,5 +1,5 @@
 {
-    "url": "localhost:5000/livraria-ecom/",
+    "url": "http://localhost:5000/livraria-ecom/",
     "endpoints": {
         "ping": "",
         "login": "login",
