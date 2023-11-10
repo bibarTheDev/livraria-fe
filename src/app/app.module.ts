@@ -11,6 +11,7 @@ import { HttpService } from 'src/shared/services/httpService/http.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './pages/login/login.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component'
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component'
     CadastroComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     SharedModule,

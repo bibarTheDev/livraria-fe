@@ -4,7 +4,7 @@
         "ping": "",
         "login": "login",
         "usuario": "usuario/$cpf",
-        "usuarioCadastro": "usuario/",
+        "usuarioCadastro": "usuario",
         "usuarioEnderecos": "usuario/$cpf/enderecos",
         "autores": "estoque/autores",
         "editoras": "estoque/editoras",

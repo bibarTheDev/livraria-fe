@@ -1,1 +1,50 @@
-<p>cadastro works!</p>
+<div class="cadastro">
+    <div class="cadastro__input">
+        <p class="cadastro__input__label">cpf</p>
+        <input [(ngModel)]="cadastro.cpf" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+    </div>
+    
+    <div class="cadastro__input">
+        <p class="cadastro__input__label">email</p>
+        <input [(ngModel)]="cadastro.email" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+    </div>
+    
+    <div class="cadastro__input">
+        <p class="cadastro__input__label">nome</p>
+        <input [(ngModel)]="cadastro.nome" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+    </div>
+    
+    <div class="cadastro__input">
+        <p class="cadastro__input__label">telefone</p>
+        <input [(ngModel)]="cadastro.telefone" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+    </div>
+    
+    <div class="cadastro__input">
+        <p class="cadastro__input__label">senha</p>
+        <input [(ngModel)]="cadastro.senha" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+    </div>
+    
+    <div class="cadastro__input">
+        <p class="cadastro__input__label">rua</p>
+        <input [(ngModel)]="cadastro.rua" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+    </div>
+    
+    <div class="cadastro__input">
+        <p class="cadastro__input__label">cep</p>
+        <input [(ngModel)]="cadastro.cep" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+    </div>
+    
+    <div class="cadastro__input">
+        <p class="cadastro__input__label">estado</p>
+        <input [(ngModel)]="cadastro.estado" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+    </div>
+    
+    <div class="cadastro__input">
+        <p class="cadastro__input__label">cidade</p>
+        <input [(ngModel)]="cadastro.cidade" (keyup)="validar()" type="text" class="cadastro__input__input-box">
+    </div>
+
+    <div class="cadastro__input">
+        <button (click)="cadastrar()" [disabled]="!valido">Finalizar Cadastro</button>
+    </div>
+</div>
