@@ -1,1 +1,75 @@
-<p>loja works!</p>
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+	<link rel="stylesheet" href="loja.component.scss">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"><!-- To be Added  -->
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Livraria Online</title>
+</head>
+
+<body>
+
+	<!-- Cabeçalho da Página -->
+	<header>
+		<mat-toolbar>
+			<div class="header-content">
+				<div class="logo">
+					<h1>Livraria Online</h1>
+				</div>
+				<div class="search-bar">
+					<input type="text" placeholder="O que você procura hoje?">
+					<button type="button"><mat-icon>search</mat-icon></button>
+				</div>
+				<nav class="nav-icons">
+					<ul>
+						<li><a href="#"><mat-icon>shopping_cart</mat-icon></a></li>
+						<li class="account-icon"><a href="#"><mat-icon>account_circle</mat-icon></a></li>
+					</ul>
+				</nav>
+			</div>
+		</mat-toolbar>
+	</header>
+
+
+	<!-- Livros -->
+	<section>
+		<div class="livros">
+		<div *ngFor="let produto of produtos" class="livro">
+			<h3><b>{{ produto.nome }}</b></h3>
+			<div class="imagem-livro">
+				<img [src]="produto.imagem" alt="Capa do Livro">
+			</div>
+			<p><b>R$ {{ produto.valor }}</b></p>
+			<div class="botoes-container">
+				<button (click)="atualizarQuantidade(produto, -1)"><mat-icon>remove</mat-icon></button>
+				<span><b>{{ produto.quantidadeSelecionada || 1 }}</b></span>
+				<button (click)="atualizarQuantidade(produto, 1)"><mat-icon>add</mat-icon></button>
+				<button (click)="adicionarAoCarrinho(3, produto.isbn, produto.quantidadeSelecionada || 1)"><mat-icon>add_shopping_cart</mat-icon></button>
+			</div>
+		</div>
+		</div>
+
+	</section>
+
+	<!-- Controles de Página -->
+
+	<div class="paginator">
+		<mat-paginator
+		[length]="100"
+		[pageSize]="6"
+		[pageSizeOptions]="[6, 12, 24, 48]"
+		aria-label="Select page"
+		(page)="carregarProdutos($event.pageIndex + 1, $event.pageSize)"
+		></mat-paginator>
+	</div>
+	<!-- Rodapé da Página -->
+	<footer>
+
+		<p><b>&copy; 2023 Livraria Online. Todos os direitos reservados.</b></p>
+
+	</footer>
+</body>
+
+</html>
