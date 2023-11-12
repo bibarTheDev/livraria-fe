@@ -1,0 +1,113 @@
+.container-login {
+    display: flex;
+	background-color: #f5f5f5;
+}
+
+
+.mat-dialog-actions {
+	justify-content: flex-end;
+}
+
+.modal-actions {
+  	position: absolute;
+  	top: -45px;
+  	right: 0px;
+}
+
+.modal-actions button {
+	border: transparent;
+	background-color: transparent;
+}
+
+.itens {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 16px;
+}
+
+// .itens {
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: center;
+// 	align-items: center;
+// 	width: 100%;
+// }
+
+// .itens .item-input {
+// 	display: flex;
+// 	flex-direction: column;
+// 	justify-content: center;
+// 	align-items: center;
+// 	width: 100%;
+// }
+
+mat-card {
+    margin-top: 10%;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    color: #000;
+}
+
+
+
+.itens .item-title h1 {
+    font-size: 24px;
+    font-weight: 800;
+}
+
+.itens .item-input .mat-icon {
+    color: rgb(199, 199, 199);
+}
+
+.itens .item-input .mat-form-field {
+	width: 100%;
+  }
+
+  .itens .item-input .inputCpf .mat-form-field,
+  .itens .item-input .inputSenha .mat-form-field {
+	width: 100%;
+  }
+
+  .itens .item-input .inputSenha .mat-icon {
+	margin-left: -25px; /* Ajuste para manter a posição do ícone de visibilidade na senha */
+  }
+
+.itens .item-input button {
+	margin-top: 10px;
+    color: #000;
+    font-size: 16px;
+    width: 95%;
+    height: 44px;
+	cursor: pointer;
+}
+
+.itens .item-input .button-actived {
+    background-color: #026910;
+    box-shadow: 0px 4px 8px #0000001F;
+    border-radius: 4px;
+    color: #f5f5f5;
+    font-size: 16px;
+    width: 95%;
+    height: 44px;
+}
+
+
+.itens .item-cadastro h4 {
+    margin-top: 40px;
+    text-decoration: underline;
+    font-size: 14px;
+    text-align: center;
+    font-weight: 800;
+    color: #212E89;
+	cursor: pointer;
+}
+
+
+
+
+
+
+

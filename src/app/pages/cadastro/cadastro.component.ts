@@ -20,9 +20,9 @@ export class CadastroComponent {
     "estado": "",
     "cidade": "",
   };
-  
+
   listaEstados: String[] = [
-    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" 
+    "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MS", "MT", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO"
   ];
 
   validadeCadastro =  {
@@ -34,7 +34,7 @@ export class CadastroComponent {
     rua: false,
     cep: false,
     estado: false,
-    cidade: false, 
+    cidade: false,
     all: false
   }
 
@@ -42,57 +42,57 @@ export class CadastroComponent {
     this.validadeCadastro.cpf = true;
   }
 
-  validaEmail() { 
+  validaEmail() {
     this.validadeCadastro.email = /^[a-z0-9.]+\@[a-z]+(\.[a-z]+)+$/gm.test(this.cadastro.email.valueOf());
     this.validadeCadastro.all = this.valida();
   }
 
-  validaNome() { 
+  validaNome() {
     this.validadeCadastro.nome = true;
     this.validadeCadastro.all = this.valida();
   }
 
-  validaTelefone() { 
+  validaTelefone() {
     this.validadeCadastro.telefone = true;
     this.validadeCadastro.all = this.valida();
   }
 
-  validaSenha() { 
+  validaSenha() {
     this.validadeCadastro.senha = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(this.cadastro.senha.valueOf());
     this.validadeCadastro.all = this.valida();
   }
 
-  validaRua() { 
+  validaRua() {
     this.validadeCadastro.rua = true;
     this.validadeCadastro.all = this.valida();
   }
 
-  validaCep() { 
+  validaCep() {
     this.validadeCadastro.cep = true;
     this.validadeCadastro.all = this.valida();
   }
 
-  validaEstado() { 
+  validaEstado() {
     this.validadeCadastro.estado = this.listaEstados.includes(this.cadastro.estado); console.log(this.listaEstados, this.cadastro.estado)
     this.validadeCadastro.all = this.valida();
   }
 
-  validaCidade() { 
+  validaCidade() {
     this.validadeCadastro.cidade = true;
     this.validadeCadastro.all = this.valida();
   }
 
   valida(): boolean
   {
-    return this.validadeCadastro.cpf 
-      && this.validadeCadastro.email 
-      && this.validadeCadastro.nome 
-      && this.validadeCadastro.telefone 
-      && this.validadeCadastro.senha 
-      && this.validadeCadastro.rua 
-      && this.validadeCadastro.cep 
-      && this.validadeCadastro.estado 
-      && this.validadeCadastro.cidade 
+    return this.validadeCadastro.cpf
+      && this.validadeCadastro.email
+      && this.validadeCadastro.nome
+      && this.validadeCadastro.telefone
+      && this.validadeCadastro.senha
+      && this.validadeCadastro.rua
+      && this.validadeCadastro.cep
+      && this.validadeCadastro.estado
+      && this.validadeCadastro.cidade
   }
 
   constructor(public srv: CadastroService) { }
@@ -102,7 +102,7 @@ export class CadastroComponent {
     if(!this.valida()){
       return;
     }
-    
+
     // para teste:
     // this.cadastro = {
     //   "cpf": "12332155567",
@@ -115,7 +115,7 @@ export class CadastroComponent {
     //   "estado": "SP",
     //   "cidade": "São Roque"
     // }
-  
+
     console.log(this.cadastro);
     return;
 
