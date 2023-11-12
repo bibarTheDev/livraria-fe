@@ -3,6 +3,7 @@
     "endpoints": {
         "ping": "",
         "login": "login",
+		"me": "me",
         "usuario": "usuario/$cpf",
         "usuarioCadastro": "usuario",
         "usuarioEnderecos": "usuario/$cpf/enderecos",

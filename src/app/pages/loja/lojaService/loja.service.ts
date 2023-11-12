@@ -8,23 +8,25 @@ import api from 'src/configFiles/api-adresses.json';
 })
 export class LojaService {
 
-  constructor(public http: HttpService)
-  {
+  	constructor(public http: HttpService){}
 
-  }
+	getProdutos(pagina: number, limite: number){
+		let url = `${api.url}${api.endpoints.livros}?pagina=${pagina}&limite=${limite}`
+		return this.http.get(url)
+	}
 
-  getProdutos(pagina: number, limite: number){
-    let url = `${api.url}${api.endpoints.livros}?pagina=${pagina}&limite=${limite}`
-    return this.http.get(url)
-  }
+	adicionarAoCarrinho(codigo_carrinho: number, isbn: string, quantidade: number){
+		let url = `${api.url}${api.endpoints.carrinho}`
+		return this.http.patch(url, {codigo_carrinho, isbn, quantidade})
+	}
 
-  adicionarAoCarrinho(codigo_carrinho: number, isbn: string, quantidade: number){
-	let url = `${api.url}${api.endpoints.carrinho}`
-	return this.http.patch(url, {codigo_carrinho, isbn, quantidade})
-  }
+	inicializarCarrinho(cpf: string){
+		let url = `${api.url}${api.endpoints.carrinho}`
+		return this.http.post(url, {cpf})
+	}
 
-  inicializarCarrinho(cpf: string){
-	let url = `${api.url}${api.endpoints.carrinho}`
-	return this.http.post(url, {cpf})
-  }
+	getMe() {
+		let url = `${api.url}${api.endpoints.me}`
+		return this.http.get(url)
+	}
 }

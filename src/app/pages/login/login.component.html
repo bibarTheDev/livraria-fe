@@ -1,1 +1,53 @@
-<p>login works!</p>
+<div class="container-login">
+	<mat-card class="mat-elevation-z24">
+		<mat-dialog-actions class="modal-actions">
+			<button mat-icon-button (click)="onNoClick()">
+			  <mat-icon>close</mat-icon>
+			</button>
+		</mat-dialog-actions>
+	  <section class="itens">
+		<div class="item-title">
+		   <h1> Bem-vindo de volta! </h1>
+		 </div>
+
+		<div class="item-input">
+		  <form [formGroup]="loginForm" (submit)="realizarLogin()">
+			<mat-form-field class="inputCpf">
+			  <input
+				matInput
+				placeholder="Insira seu CPF!"
+				formControlName="cpf"
+				required
+			  />
+			  <mat-error> Insira um CPF Válido! </mat-error>
+			</mat-form-field>
+			<mat-form-field class="inputSenha">
+			  <input
+				matInput
+				[type]="hideInputSenha ? 'password' : 'text'"
+				placeholder="Insira sua senha!"
+				formControlName="senha"
+				required
+			  />
+			  <mat-icon matSuffix (click)="hideInputSenha = !hideInputSenha">{{hideInputSenha ? 'visibility_off' : 'visibility'}}</mat-icon>
+			  <mat-error> Insira uma Senha! </mat-error>
+			</mat-form-field>
+
+			<button
+			  mat-raised-button
+			  color="primary"
+			  [disabled]="!loginForm.valid"
+			  [ngClass]="{'button-actived': loginForm.valid}"
+			>
+			  Entrar
+			</button>
+		  </form>
+
+		  <div class="item-cadastro">
+		   <h4 (click)="realizarCadastro()"> Ainda não tem cadastro? </h4>
+		 </div>
+
+		</div>
+	  </section>
+	</mat-card>
+  </div>

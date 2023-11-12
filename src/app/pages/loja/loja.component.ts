@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgToastService } from 'ng-angular-popup';
+import { LoginComponent } from '../login/login.component';
 import { LojaService } from './lojaService/loja.service';
 @Component({
 	selector: 'app-loja',
@@ -11,7 +13,7 @@ export class LojaComponent {
     limitePorPagina = 6;
     produtos: any[] = []; // Array para armazenar os produtos
 
-    constructor(public srv: LojaService, private toast: NgToastService) {
+    constructor(public srv: LojaService, private toast: NgToastService, private dialog: MatDialog) {
 		this.carregarProdutos(this.paginaSelecionada, this.limitePorPagina);
     }
 
@@ -85,4 +87,27 @@ export class LojaComponent {
 			}
 		);
     }
+
+	handleConta() {
+		this.srv.getMe().subscribe(
+			(response: any) => {
+				console.log(`exibir tela de conta`)
+			},
+			(error) => {
+				console.log(`abrir modal de login`)
+				this.abrirModalLogin();
+			}
+		)
+	}
+
+	abrirModalLogin() {
+		const dialogRef = this.dialog.open(LoginComponent, {
+			width: '400px'
+			// outros configs
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log('The dialog was closed');
+		});
+	}
 }
