@@ -43,7 +43,7 @@ export class CadastroComponent {
   }
 
   validaEmail() { 
-    this.validadeCadastro.email = /^[a-z0-9.]+\@[a-z]+(\.[a-z]+)+$/gm.test(this.cadastro.email.valueOf());
+    this.validadeCadastro.email = /^[A-Za-z0-9.]+\@[a-z]+(\.[a-z]+)+$/gm.test(this.cadastro.email.valueOf());
     this.validadeCadastro.all = this.valida();
   }
 
@@ -58,7 +58,10 @@ export class CadastroComponent {
   }
 
   validaSenha() { 
-    this.validadeCadastro.senha = /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(this.cadastro.senha.valueOf());
+    this.validadeCadastro.senha = 
+      /((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/.test(this.cadastro.senha.valueOf())
+      && this.cadastro.senha.length > 3
+      && this.cadastro.senha.length < 19;
     this.validadeCadastro.all = this.valida();
   }
 
