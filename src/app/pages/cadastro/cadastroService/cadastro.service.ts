@@ -17,8 +17,8 @@ export class CadastroService {
   cadastrarUsuario(dados: Cadastro)
   {
     let url = api.url + api.endpoints.usuarioCadastro; 
-    // let headers = {'Content-Type':'application/json'}
+    let headers = {'Content-Type':'application/json'}
 
-    return this.http.post(url, dados/*, headers*/);
+    return this.http.post(url, JSON.stringify(dados), headers);
   }
 }

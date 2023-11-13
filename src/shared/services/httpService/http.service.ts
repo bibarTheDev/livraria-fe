@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, Type } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -20,7 +20,7 @@ export class HttpService {
     let options: any = { };
     headers ? options["headers"] = new HttpHeaders(headers) : false;
     
-    return this.http.post(url, String(body), options);
+    return this.http.post<any>(url, String(body), options);
   }
   
   put(url: string, body?: Object, headers?: any){

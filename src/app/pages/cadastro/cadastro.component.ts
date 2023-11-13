@@ -106,26 +106,20 @@ export class CadastroComponent {
       return;
     }
 
-    // para teste:
-    // this.cadastro = {
-    //   "cpf": "12332155567",
-    //   "email": "teste@email.com",
-    //   "nome": "João da Silva",
-    //   "telefone": "11994485668",
-    //   "senha": "Abc@123",
-    //   "rua": "Rua Mangaratiba, 65",
-    //   "cep": "18136-191",
-    //   "estado": "SP",
-    //   "cidade": "São Roque"
-    // }
-
     console.log(this.cadastro);
-    return;
 
-    this.srv.cadastrarUsuario(this.cadastro)
-    .subscribe((response) => {
-        console.log("chego");
-        console.log(response);
+    this.srv.cadastrarUsuario(this.cadastro).subscribe(
+      (result) => {
+        console.log("foi cadastro", result);
+        // deve realizar login
+      },
+      (error) => {
+        if(error.status == 400){
+          console.log("dados invalidos");
+        }
+        else {
+          console.log(error)
+        }
       }
     );
   }
