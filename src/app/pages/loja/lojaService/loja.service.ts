@@ -24,9 +24,4 @@ export class LojaService {
 		let url = `${api.url}${api.endpoints.carrinho}`
 		return this.http.post(url, {cpf})
 	}
-
-	getMe() {
-		let url = `${api.url}${api.endpoints.me}`
-		return this.http.get(url)
-	}
 }
