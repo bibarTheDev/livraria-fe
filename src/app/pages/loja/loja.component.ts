@@ -5,6 +5,7 @@ import { NgToastService } from 'ng-angular-popup';
 import { CarrinhoComponent } from '../carrinho/carrinho.component';
 import { LoginComponent } from '../login/login.component';
 import { LojaService } from './lojaService/loja.service';
+import { UserService } from 'src/shared/services/userService/user.service';
 @Component({
 	selector: 'app-loja',
 	templateUrl: './loja.component.html',
@@ -19,6 +20,7 @@ export class LojaComponent {
 
     constructor(
 		public srv: LojaService,
+		public userSrv: UserService,
 		private toast: NgToastService,
 		private dialog: MatDialog,
 		private router: Router
@@ -61,11 +63,13 @@ export class LojaComponent {
     }
 
 	obterCarrinho() {
-		if (localStorage.getItem('cpf') != null) {
-			this.srv.inicializarCarrinho(localStorage.getItem('cpf') || '').subscribe(
+		let cpf = this.userSrv.getCpf(); 
+
+		if (cpf) {
+			this.srv.inicializarCarrinho(cpf).subscribe(
 				(response: any) => {
 					this.codigo_carrinho = response.codigo;
-					localStorage.setItem('codigo_carrinho', response.codigo)
+					this.userSrv.setCodCarrinho(response.codigo);
 				},
 				(error) => {
 					this.toast.error({
@@ -129,21 +133,6 @@ export class LojaComponent {
 			}
 		);
     }
-
-	handleConta() {
-		this.srv.getMe().subscribe(
-			(response: any) => {
-				if (this.codigo_carrinho === 0) {
-					this.obterCarrinho()
-				}
-				// TODO: EXIBIR TELA DE CONTA
-				// TODO: CRIAR LOGOUT
-			},
-			(error) => {
-				this.abrirModalLogin();
-			}
-		)
-	}
 
 	handleCarrinho() {
 		//TODO: IMPLEMENTAR TELA DE CARRINHO

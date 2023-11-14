@@ -3,7 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { LoginService } from './loginService/login.service';
+import { LoginService } from 'src/shared/services/loginService/login.service';
+import { UserService } from 'src/shared/services/userService/user.service';
 
 @Component({
   selector: 'app-login',
@@ -22,7 +23,6 @@ export class LoginComponent implements OnInit {
 		private formBuilder: FormBuilder,
 		private router: Router,
 		private toast: NgToastService,
-		private srv: LoginService
 		) {
 			this.loginForm = this.formBuilder.group({
 				cpf: [, { validators: [Validators.required, Validators.pattern(/^\d+$/), Validators.maxLength(11), Validators.minLength(11)] }],
@@ -47,10 +47,12 @@ export class LoginComponent implements OnInit {
 	}
 
 	private realizarLogin(cpf: string, senha: string): void {
-		this.srv.login(cpf, senha).subscribe(
+		this.loginSrv.login(cpf, senha).subscribe(
 			(response: any) => {
-				localStorage.setItem('token', response.access_token);
-				localStorage.setItem('cpf', cpf)
+
+				this.userSrv.setCpf(cpf);
+				this.userSrv.setUserToken(response.access_token);
+
 				this.toast.success({
 					detail: 'Login realizado com sucesso!',
 					summary: 'Login realizado com sucesso',

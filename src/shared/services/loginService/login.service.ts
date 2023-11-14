@@ -11,11 +11,12 @@ export class LoginService {
 
   constructor(public http: HttpService){}
 
-	login(dados: Login) {
-		let url = `${api.url}${api.endpoints.login}`
-		let headers = {'Content-Type':'application/json'}
-
-		return this.http.post(url, JSON.stringify(dados), headers)
+  login(cpf: string, senha: string) {
+		let url = api.url + api.endpoints.login;
+		const body = {cpf: cpf, senha: senha}
+		console.log(`service`)
+		console.log(typeof(cpf), typeof(senha))
+		return this.http.post(url, body);
 	}
 
 	getMe() {

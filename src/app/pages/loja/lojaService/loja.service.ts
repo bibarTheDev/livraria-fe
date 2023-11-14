@@ -2,16 +2,20 @@ import { Injectable } from '@angular/core';
 import { HttpService } from 'src/shared/services/httpService/http.service';
 
 import api from 'src/configFiles/api-adresses.json';
+import { UserService } from 'src/shared/services/userService/user.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LojaService {
 	private token = {
-		'Authorization': `Bearer ${localStorage.getItem('token')}`
+		'Authorization': `Bearer ${this.userSrv.getUserToken()}`
 	}
 
-  	constructor(public http: HttpService){}
+  	constructor(
+		  public userSrv: UserService,
+		  public http: HttpService
+	){}
 
 	getProdutos(pagina: number, limite: number, like?: string){
 		let url = `${api.url}${api.endpoints.livros}?pagina=${pagina}&limite=${limite}&like=${like}`
@@ -26,10 +30,5 @@ export class LojaService {
 	inicializarCarrinho(cpf: string){
 		let url = `${api.url}${api.endpoints.carrinho}`
 		return this.http.post(url, {cpf}, this.token)
-	}
-
-	getMe() {
-		let url = `${api.url}${api.endpoints.me}`
-		return this.http.get(url, this.token)
 	}
 }
