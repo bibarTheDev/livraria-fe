@@ -10,6 +10,29 @@
 </head>
 
 <body>
+
+	<!-- Cabeçalho da Página -->
+	<header>
+		<mat-toolbar>
+			<div class="header-content">
+				<div class="logo">
+					<h1>Livraria Online</h1>
+				</div>
+				<div class="search-bar">
+					<input type="text" placeholder="O que você procura hoje?">
+					<button type="button"><mat-icon>search</mat-icon></button>
+				</div>
+				<nav class="nav-icons">
+					<ul>
+						<li><a><mat-icon>shopping_cart</mat-icon></a></li>
+						<li class="account-icon" (click)="handleConta()"><a><mat-icon>account_circle</mat-icon></a></li>
+					</ul>
+				</nav>
+			</div>
+		</mat-toolbar>
+	</header>
+
+
 	<!-- Livros -->
 	<section>
 		<div class="livros">
@@ -23,7 +46,7 @@
 				<button (click)="atualizarQuantidade(produto, -1)"><mat-icon>remove</mat-icon></button>
 				<span><b>{{ produto.quantidadeSelecionada || 1 }}</b></span>
 				<button (click)="atualizarQuantidade(produto, 1)"><mat-icon>add</mat-icon></button>
-				<button (click)="adicionarAoCarrinho(3, produto.isbn, produto.quantidadeSelecionada || 1)"><mat-icon>add_shopping_cart</mat-icon></button>
+				<button (click)="adicionarAoCarrinho(produto.quantidadeSelecionada || 1, produto.isbn)"><mat-icon>add_shopping_cart</mat-icon></button>
 			</div>
 		</div>
 		</div>
@@ -35,10 +58,10 @@
 	<div class="paginator">
 		<mat-paginator
 		[length]="100"
-		[pageSize]="6"
+		[pageSize]="limitePorPagina"
 		[pageSizeOptions]="[6, 12, 24, 48]"
 		aria-label="Select page"
-		(page)="carregarProdutos($event.pageIndex + 1, $event.pageSize)"
+		(page)="onPageChange($event)"
 		></mat-paginator>
 	</div>
 </body>

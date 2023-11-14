@@ -27,6 +27,59 @@
 	height: min-content; /* Altura fixa para todas as imagens */
 }
 
+.header-content {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+}
+
+.header-content .logo {
+	cursor: pointer;
+}
+
+.logo {
+	flex-shrink: 0; /* Adiciona essa propriedade para impedir que a .logo encolha */
+	margin-right: 10px; /* Adiciona uma margem direita para separação da .search-bar */
+}
+
+.nav-icons {
+	display: flex;
+	align-items: center;
+}
+
+.nav-icons ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+	display: flex;
+}
+
+.nav-icons li {
+	margin: 0 10px;
+}
+
+.nav-icons li mat-icon {
+	cursor: pointer;
+	color: black;
+}
+
+.search-bar {
+	display: flex;
+	align-items: center;
+}
+
+.search-bar input {
+	margin-right: 10px;
+	height: 25px;
+	width: 500px; /* Ajuste o valor conforme necessário */
+}
+
+.search-bar button {
+	height: max-content;
+	cursor: pointer;
+}
+
 .paginator {
 	display: flex;
 	justify-content: center;
