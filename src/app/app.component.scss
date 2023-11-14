@@ -1,6 +1,17 @@
+::ng-deep :root  {
+	--primary-color: #99B080;
+	--secondary-color: #F9B572;
+	--tertiary-color: #748E63;
+	--quaternary-color: #FAF8ED;
+}
 
+.mat-toolbar.mat-primary {
+	background: var(--primary-color);
+	color: #fff;
+}
 
 .header-content {
+	color: var(--quaternary-color);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -8,8 +19,13 @@
 }
 
 .logo {
-	flex-shrink: 0; /* Adiciona essa propriedade para impedir que a .logo encolha */
-	margin-right: 10px; /* Adiciona uma margem direita para separação da .search-bar */
+	display: flex;
+	gap: .5rem;
+	cursor: pointer;
+}
+
+.logo img{
+	width: 30px;
 }
 
 .nav-icons {
@@ -33,20 +49,32 @@
 	color: black;
 }
 
+.nav-icons a{
+	display: flex;
+    align-items: center;
+}
+
 .search-bar {
 	display: flex;
 	align-items: center;
+	width: 400px;
 }
 
 .search-bar input {
-	margin-right: 10px;
-	height: 25px;
-	width: 500px; /* Ajuste o valor conforme necessário */
+	width: 100%;
+	border-radius: 5px 0 0 5px;
+	border-width: 0;
+    outline: none;
+    padding: 11px 15px;
 }
 
 .search-bar button {
 	height: max-content;
 	cursor: pointer;
+	padding: 5px;
+    outline: none;
+	border-radius: 0 5px 5px 0;
+	border-width: 0;
 }
 
 

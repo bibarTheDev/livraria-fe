@@ -1,62 +1,65 @@
-<div class="cadastro">
-    <div class="cadastro__input">
-        <p class="cadastro__input__label">CPF</p>
-        <input [(ngModel)]="cadastro.cpf" (keyup)="validaCpf()" type="text" class="cadastro__input__text-box">
-        <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.cpf"> Dados inválidos </p>
-    </div>
 
-    <div class="cadastro__input">
-        <p class="cadastro__input__label">Email</p>
-        <input [(ngModel)]="cadastro.email" (keyup)="validaEmail()" type="email" class="cadastro__input__text-box">
-        <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.email"> Dados inválidos </p>
-    </div>
+<div class="cadastro-container">
+    <h2>Cadastro</h2>
+    <div class="cadastro">
+        <div class="cadastro__input" style="width: 8rem;">
+            <p class="cadastro__input__label">CPF</p>
+            <input [(ngModel)]="cadastro.cpf" (keyup)="validaCpf()" type="text" class="cadastro__input__text-box">
+            <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.cpf"> Dados inválidos </p>
+        </div>
 
-    <div class="cadastro__input">
-        <p class="cadastro__input__label">Nome</p>
-        <input [(ngModel)]="cadastro.nome" (keyup)="validaNome()" type="text" class="cadastro__input__text-box">
-        <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.nome"> Dados inválidos </p>
+        <div class="cadastro__input" style="width: 8rem;">
+            <p class="cadastro__input__label">Senha</p>
+            <input [(ngModel)]="cadastro.senha" (keyup)="validaSenha()" type="password" class="cadastro__input__text-box">
+            <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.senha"> Dados inválidos </p>
+        </div>
+    
+        <div class="cadastro__input" style="width: 10rem;">
+            <p class="cadastro__input__label">Email</p>
+            <input [(ngModel)]="cadastro.email" (keyup)="validaEmail()" type="email" class="cadastro__input__text-box">
+            <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.email"> Dados inválidos </p>
+        </div>
+    
+        <div class="cadastro__input" style="width: 20rem;">
+            <p class="cadastro__input__label">Nome</p>
+            <input [(ngModel)]="cadastro.nome" (keyup)="validaNome()" type="text" class="cadastro__input__text-box">
+            <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.nome"> Dados inválidos </p>
+        </div>
+    
+        <div class="cadastro__input" style="width: 8rem;">
+            <p class="cadastro__input__label">Telefone</p>
+            <input [(ngModel)]="cadastro.telefone" (keyup)="validaTelefone()" type="text" class="cadastro__input__text-box">
+            <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.telefone"> Dados inválidos </p>
+        </div>
+    
+        <div class="cadastro__input" style="width: 20rem;">
+            <p class="cadastro__input__label">Rua</p>
+            <input [(ngModel)]="cadastro.rua" (keyup)="validaRua()" type="text" class="cadastro__input__text-box">
+            <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.rua"> Dados inválidos </p>
+        </div>
+    
+        <div class="cadastro__input" style="width: 8rem;">
+            <p class="cadastro__input__label">CEP</p>
+            <input [(ngModel)]="cadastro.cep" (keyup)="validaCep()" type="text" class="cadastro__input__text-box">
+            <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.cep"> Dados inválidos </p>
+        </div>
+    
+        <div class="cadastro__input" style="width: 6rem;">
+            <p class="cadastro__input__label">Estado</p>
+            <select [(ngModel)]="cadastro.estado" (click)="validaEstado()" class="cadastro__input__select">
+                <option value=""> </option>
+                <option *ngFor="let e of listaEstados" value="{{ e }}"> {{ e }} </option>
+            </select>
+            <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.estado"> Dados inválidos </p>
+        </div>
+    
+        <div class="cadastro__input" style="width: 10rem;">
+            <p class="cadastro__input__label">Cidade</p>
+            <input [(ngModel)]="cadastro.cidade" (keyup)="validaCidade()" type="text" class="cadastro__input__text-box">
+            <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.cidade"> Dados inválidos </p>
+        </div>
     </div>
-
-    <div class="cadastro__input">
-        <p class="cadastro__input__label">Telefone</p>
-        <input [(ngModel)]="cadastro.telefone" (keyup)="validaTelefone()" type="text" class="cadastro__input__text-box">
-        <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.telefone"> Dados inválidos </p>
-    </div>
-
-    <div class="cadastro__input">
-        <p class="cadastro__input__label">Senha</p>
-        <input [(ngModel)]="cadastro.senha" (keyup)="validaSenha()" type="password" class="cadastro__input__text-box">
-        <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.senha"> Dados inválidos </p>
-    </div>
-
-    <div class="cadastro__input">
-        <p class="cadastro__input__label">Rua</p>
-        <input [(ngModel)]="cadastro.rua" (keyup)="validaRua()" type="text" class="cadastro__input__text-box">
-        <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.rua"> Dados inválidos </p>
-    </div>
-
-    <div class="cadastro__input">
-        <p class="cadastro__input__label">CEP</p>
-        <input [(ngModel)]="cadastro.cep" (keyup)="validaCep()" type="text" class="cadastro__input__text-box">
-        <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.cep"> Dados inválidos </p>
-    </div>
-
-    <div class="cadastro__input">
-        <p class="cadastro__input__label">Estado</p>
-        <select [(ngModel)]="cadastro.estado" (click)="validaEstado()" class="cadastro__input__select">
-            <option value=""> </option>
-            <option *ngFor="let e of listaEstados" value="{{ e }}"> {{ e }} </option>
-        </select>
-        <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.estado"> Dados inválidos </p>
-    </div>
-
-    <div class="cadastro__input">
-        <p class="cadastro__input__label">Cidade</p>
-        <input [(ngModel)]="cadastro.cidade" (keyup)="validaCidade()" type="text" class="cadastro__input__text-box">
-        <p class="cadastro__input__label--invalido" *ngIf="!validadeCadastro.cidade"> Dados inválidos </p>
-    </div>
-
-    <div class="cadastro__input">
-        <button (click)="cadastrar()" [disabled]="!validadeCadastro.all">Finalizar Cadastro</button>
+    <div class="cadastro__button__container">
+        <button class="cadastro__button" (click)="cadastrar()" [disabled]="!validadeCadastro.all">Finalizar Cadastro</button>
     </div>
 </div>

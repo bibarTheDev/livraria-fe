@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from 'src/shared/services/loginService/login.service';
 import { LoginComponent } from './pages/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 export class AppComponent {
   title = 'livraria-fe';
   
-  constructor(public srv: LoginService, private dialog: MatDialog) {}
+  constructor(public srv: LoginService, private dialog: MatDialog, private router: Router) {}
 
 
   
@@ -36,5 +37,9 @@ export class AppComponent {
 				this.abrirModalLogin();
 			}
 		)
+	}
+
+	redirecionarHome(): void {
+		this.router.navigate(['/']);
 	}
 }

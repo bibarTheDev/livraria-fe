@@ -1,0 +1,66 @@
+.cadastro-container{
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.cadastro-container h2{
+    margin-bottom: 0;
+}
+
+.cadastro{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem 2rem;
+    background-color: var(--quaternary-color);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.cadastro__input p{
+    margin-bottom: 0;
+}
+
+.cadastro__input__label--invalido{
+    font-size: .75em;
+    color: #b1b1b1;
+    font-weight: 500;
+}
+
+.cadastro__input input, .cadastro__input__select{
+    border-width: 1px;
+    border-radius: 3px;
+    border-style: solid;
+    padding: 7px;
+    border-color: var(--primary-color);
+    outline: none;
+    width: 100%;
+}
+
+.cadastro__input input:active, .cadastro__input input:focus, .cadastro__input__select:active, .cadastro__input__select:focus{
+    border-color: black;
+    border-width: 1.3px;
+}
+
+
+.cadastro__button__container{
+    display: flex;
+    justify-content: right;
+}
+
+.cadastro__button{
+    border-style: solid;
+    border-radius: 7px;
+    padding: .5rem 2rem;
+    border-width: 1.4px;
+    font-weight: 600;
+    color: #939393;
+}
+
+.cadastro__button:enabled{
+    cursor: pointer;
+    color: var(--tertiary-color);
+    background-color: var(--quaternary-color);
+    border-color: var(--tertiary-color);
+}
