@@ -11,6 +11,10 @@
 
 <body>
 	<!-- Livros -->
+	<div class="search-bar">
+		<input type="text" placeholder="O que você procura hoje?" [(ngModel)]="like" (keyup.enter)="carregarProdutos()">
+		<button type="button" (click)="carregarProdutos()"><mat-icon>search</mat-icon></button>
+	</div>
 	<section>
 		<div class="livros">
 		<div *ngFor="let produto of produtos" class="livro">

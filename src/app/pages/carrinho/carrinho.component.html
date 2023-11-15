@@ -1,1 +1,30 @@
-<p>carrinho works!</p>
+<!-- carrinho.component.html -->
+
+<div class="modal">
+	<div class="modal-content">
+	  <span class="close" (click)="onNoClick()">&times;</span>
+
+	  <h2>Carrinho</h2>
+
+	  <div *ngIf="carrinho && carrinho.itens.length > 0; else carrinhoVazio">
+		<div *ngFor="let item of carrinho.itens">
+		  <div class="item-carrinho">
+			<img [src]="item.livro.imagem" alt="Imagem do Livro">
+			<div class="detalhes-livro">
+			  <p><strong>{{ item.livro.titulo }}</strong></p>
+			  <p>Valor: R$ {{ item.livro.valor.toFixed(2) }}</p>
+			  <p>Quantidade: {{ item.quantidade }}</p>
+			</div>
+		  </div>
+		</div>
+
+		<div class="total-carrinho">
+		  <p><strong>Total do Carrinho: R$ {{ carrinho.valor_total.toFixed(2) }}</strong></p>
+		</div>
+	  </div>
+
+	  <ng-template #carrinhoVazio>
+		<p>O seu carrinho está vazio.</p>
+	  </ng-template>
+	</div>
+  </div>

@@ -6,13 +6,9 @@
                 <img src="assets/images/library-icon.png"/>
                 <h1>Livraria Online</h1>
             </div>
-            <div class="search-bar">
-                <input type="text" placeholder="O que você procura hoje?">
-                <button type="button"><mat-icon>search</mat-icon></button>
-            </div>
             <nav class="nav-icons">
                 <ul>
-                    <li><a><mat-icon>shopping_cart</mat-icon></a></li>
+                    <li (click)="handleCarrinho()"><a><mat-icon>shopping_cart</mat-icon></a></li>
                     <li class="account-icon" (click)="handleConta()"><a><mat-icon>account_circle</mat-icon></a></li>
                 </ul>
             </nav>

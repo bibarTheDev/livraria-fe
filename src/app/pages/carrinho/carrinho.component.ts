@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CarrinhoService } from './carrinhoService/carrinho.service';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-carrinho',
@@ -8,11 +9,12 @@ import { CarrinhoService } from './carrinhoService/carrinho.service';
   styleUrls: ['./carrinho.component.scss']
 })
 export class CarrinhoComponent {
-	produtos: any[] = [];
+	carrinho: any = null;
 
 	constructor(
 		public dialogRef: MatDialogRef<CarrinhoComponent>,
-		private srv: CarrinhoService
+		private srv: CarrinhoService,
+		private toast: NgToastService,
 	) {
 		this.getCarrinho()
 	}
@@ -29,10 +31,14 @@ export class CarrinhoComponent {
 	getCarrinho() {
 		this.srv.getCarrinho().subscribe(
 			(response: any) => {
-				console.log(response)
+				this.carrinho = response.data
 			},
 			(error) => {
-				console.error(error)
+				this.toast.error({
+					detail: 'Erro ao carregar o carrinho. Isso pode ser um erro de conexão ou você não está logado. \n Se persistir, contate o administrador em (11) 0800-0404',
+					summary: error?.error?.message || null,
+					duration: 5000
+				})
 			}
 		)
 	}
