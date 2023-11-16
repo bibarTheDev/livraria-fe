@@ -21,6 +21,7 @@ import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LojaComponent } from './pages/loja/loja.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ProdutoComponent } from './pages/produto/produto.component';
     ProdutoComponent,
     CarrinhoComponent,
     LoginComponent,
-    CadastroComponent
+    CadastroComponent,
+    PerfilComponent
   ],
   imports: [
     FormsModule,

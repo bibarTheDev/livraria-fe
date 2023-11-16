@@ -8,9 +8,9 @@ import { UserService } from 'src/shared/services/userService/user.service';
   providedIn: 'root'
 })
 export class LojaService {
-	private token = {
-		'Authorization': `Bearer ${this.userSrv.getUserToken()}`
-	}
+
+	
+	getAuthHeader() { return {'Authorization': `Bearer ${this.userSrv.getUserToken()}`} }
 
   	constructor(
 		  public userSrv: UserService,
@@ -24,11 +24,11 @@ export class LojaService {
 
 	adicionarAoCarrinho(codigo_carrinho: number, isbn: string, quantidade: number){
 		let url = `${api.url}${api.endpoints.carrinho}`
-		return this.http.patch(url, {codigo_carrinho, isbn, quantidade}, this.token)
+		return this.http.patch(url, {codigo_carrinho, isbn, quantidade}, this.getAuthHeader())
 	}
 
 	inicializarCarrinho(cpf: string){
 		let url = `${api.url}${api.endpoints.carrinho}`
-		return this.http.post(url, {cpf}, this.token)
+		return this.http.post(url, {cpf}, this.getAuthHeader())
 	}
 }

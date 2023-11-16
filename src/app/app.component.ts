@@ -45,10 +45,10 @@ export class AppComponent {
 	handleConta() {
 		this.loginSrv.getMe().subscribe(
 			(response: any) => {
-				console.log(`exibir tela de conta`)
+				this.userloginSrv.setLoggedUser(response);
+				this.router.navigate(['/perfil']);
 			},
 			(error) => {
-				console.log(`abrir modal de login`)
 				this.abrirModalLogin();
 			}
 		)
