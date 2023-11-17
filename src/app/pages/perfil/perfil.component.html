@@ -1,6 +1,9 @@
 
 <div class="perfil-container">
-    <h2>Seu perfil</h2>
+    <div class="perfil-title">
+        <mat-icon>account_circle</mat-icon>
+        <h2>Seu perfil</h2>
+    </div>
     <div class="perfil">
         <div class="perfil__item">
             <p class="perfil__item__titulo">Nome</p>
@@ -19,15 +22,15 @@
             <p class="perfil__item__valor">{{ userData.telefone }}</p>
         </div>
         <div class="perfil__item">
-            <p class="perfil__item__titulo">Enderecos</p>
+            <p class="perfil__item__titulo">Endereço</p>
             <div *ngFor="let e of userData.enderecos" class="perfil__item__enderecos">
-                <p class="perfil__item__enderecos__subtitulo">Rua</p>
+                <!-- <p class="perfil__item__enderecos__subtitulo">Rua</p> -->
                 <p class="perfil__item__enderecos__valor">{{ e.rua }}</p>
                 
-                <p class="perfil__item__enderecos__subtitulo">Cidade</p>
+                <!-- <p class="perfil__item__enderecos__subtitulo">Cidade</p> -->
                 <p class="perfil__item__enderecos__valor">{{ e.cidade }}, {{ e.estado }}</p>
                 
-                <p class="perfil__item__enderecos__subtitulo">CEP</p>
+                <!-- <p class="perfil__item__enderecos__subtitulo">CEP</p> -->
                 <p class="perfil__item__enderecos__valor">{{ e.cep }}</p>
             </div>
         </div>
@@ -35,6 +38,6 @@
             <p class="perfil__item--admin__texto"> Você é um administrador </p>
         </div>
 
-        <button class="perfil__logout" (click)="logout()"> logout </button>
+        <button class="perfil__logout" (click)="logout()"> <mat-icon>logout</mat-icon> Logout </button>
     </div>
 </div>
