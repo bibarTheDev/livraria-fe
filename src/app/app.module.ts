@@ -22,6 +22,7 @@ import { LoginComponent } from './pages/login/login.component';
 import { LojaComponent } from './pages/loja/loja.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { PerfilComponent } from './pages/perfil/perfil.component';
     CarrinhoComponent,
     LoginComponent,
     CadastroComponent,
-    PerfilComponent
+    PerfilComponent,
+    PagamentoComponent
   ],
   imports: [
     FormsModule,

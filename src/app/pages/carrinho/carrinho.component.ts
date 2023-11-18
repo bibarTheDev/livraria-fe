@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
-import { CarrinhoService } from './carrinhoService/carrinho.service';
+import { CarrinhoService } from '../../../shared/services/carrinhoService/carrinho.service';
 import { NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-carrinho',
@@ -12,6 +13,7 @@ export class CarrinhoComponent {
 	carrinho: any = null;
 
 	constructor(
+		public router: Router,
 		public dialogRef: MatDialogRef<CarrinhoComponent>,
 		private srv: CarrinhoService,
 		private toast: NgToastService,
@@ -24,14 +26,14 @@ export class CarrinhoComponent {
 	}
 
 	prosseguirParaPagamento() {
-		// TODO: REDIRECIONAR PARA TELA DE PAGAMENTO
-		throw new Error('Method not implemented.');
+		this.router.navigate(['/pagamento']);
+		this.dialogRef.close();
 	}
 
 	getCarrinho() {
 		this.srv.getCarrinho().subscribe(
 			(response: any) => {
-				this.carrinho = response.data
+				this.carrinho = response
 			},
 			(error) => {
 				this.toast.error({

@@ -7,6 +7,7 @@ import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
+import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,9 @@ const routes: Routes = [
   },
   {
     path: "carrinho", component: CarrinhoComponent
+  },
+  {
+    path: "pagamento", component: PagamentoComponent
   },
   {
     path: "*", redirectTo: "loja"

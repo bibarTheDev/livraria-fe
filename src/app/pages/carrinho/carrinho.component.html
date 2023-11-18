@@ -21,6 +21,8 @@
 		<div class="total-carrinho">
 		  <p><strong>Total do Carrinho: R$ {{ carrinho.valor_total.toFixed(2) }}</strong></p>
 		</div>
+
+		<button (click)="prosseguirParaPagamento()">Finalizar Compra</button>
 	  </div>
 
 	  <ng-template #carrinhoVazio>
