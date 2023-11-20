@@ -3,13 +3,14 @@
     <mat-toolbar color="primary">
         <div class="header-content">
             <div class="logo" (click)="redirecionarHome()">
-                <img src="assets/images/library-icon.png"/>
+                <!-- <img src="assets/images/library-icon.png"/> -->
+                <mat-icon class="header-icon">menu_book</mat-icon>
                 <h1>Livraria Online</h1>
             </div>
             <nav class="nav-icons">
                 <ul>
-                    <li (click)="handleCarrinho()"><a><mat-icon>shopping_cart</mat-icon></a></li>
-                    <li class="account-icon" (click)="handleConta()"><a><mat-icon>account_circle</mat-icon></a></li>
+                    <li (click)="handleCarrinho()"><a><mat-icon class="header-icon">shopping_cart</mat-icon></a></li>
+                    <li class="account-icon" (click)="handleConta()"><a><mat-icon class="header-icon">account_circle</mat-icon></a></li>
                 </ul>
             </nav>
         </div>

@@ -9,7 +9,7 @@ import { UserService } from 'src/shared/services/userService/user.service';
 	styleUrls: ['./loja.component.scss']
 })
 export class LojaComponent {
-    paginaSelecionada = 0;
+    paginaSelecionada = 1;
     limitePorPagina = 6;
 	like = '';
     produtos: any[] = [];

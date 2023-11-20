@@ -1,32 +1,41 @@
 <!-- carrinho.component.html -->
 
 <div class="modal">
+	<div class="carrinho-header">
+		<div class="carrinho-title">
+			<mat-icon>shopping_cart</mat-icon>
+			<h2>Carrinho</h2>
+		</div>
+
+		<button class="close-button" mat-icon-button (click)="onNoClick()">
+			<mat-icon>close</mat-icon>
+		</button>
+	</div>
 	<div class="modal-content">
-	  <span class="close" (click)="onNoClick()">&times;</span>
-
-	  <h2>Carrinho</h2>
-
-	  <div *ngIf="carrinho && carrinho.itens.length > 0; else carrinhoVazio">
-		<div *ngFor="let item of carrinho.itens">
-		  <div class="item-carrinho">
-			<img [src]="item.livro.imagem" alt="Imagem do Livro">
-			<div class="detalhes-livro">
-			  <p><strong>{{ item.livro.titulo }}</strong></p>
-			  <p>Valor: R$ {{ item.livro.valor.toFixed(2) }}</p>
-			  <p>Quantidade: {{ item.quantidade }}</p>
-			</div>
-		  </div>
+		<div *ngIf="carrinho && carrinho.itens.length > 0; else carrinhoVazio">
+			<div class="items-carrinho">
+				<div *ngFor="let item of carrinho.itens">
+					<div class="item-carrinho">
+					<img [src]="item.livro.imagem" onerror="if (this.src != 'assets/images/unavailable.jpg') this.src = 'assets/images/unavailable.jpg';" alt="Imagem do Livro">
+					<!-- <img src="assets/images/capa-livro-01.png"/> -->
+					<div class="detalhes-livro">
+						<p><strong>{{ item.livro.titulo }}</strong></p>
+						<p>Valor: R$ {{ item.livro.valor.toFixed(2) }}</p>
+						<p>Quantidade: {{ item.quantidade }}</p>
+					</div>
+					</div>
+				</div>
+				</div>
+		
+				<div class="resumo-carrinho">
+				<div class="total-carrinho">
+					<span><strong>Total do Carrinho: R$ {{ carrinho.valor_total.toFixed(2) }}</strong></span>
+					</div>
+					<button (click)="prosseguirParaPagamento()">Finalizar Compra</button>
+				</div>
 		</div>
-
-		<div class="total-carrinho">
-		  <p><strong>Total do Carrinho: R$ {{ carrinho.valor_total.toFixed(2) }}</strong></p>
-		</div>
-
-		<button (click)="prosseguirParaPagamento()">Finalizar Compra</button>
-	  </div>
-
-	  <ng-template #carrinhoVazio>
-		<p>O seu carrinho está vazio.</p>
-	  </ng-template>
+		<ng-template #carrinhoVazio>
+			<p>O seu carrinho está vazio.</p>
+		</ng-template>
 	</div>
   </div>
