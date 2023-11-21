@@ -55,7 +55,17 @@ export class AppComponent {
 	}
 
 	handleCarrinho() {
-		//TODO: IMPLEMENTAR TELA DE CARRINHO
+		// nao deve abrir o carrinho na pagina de pgto
+		if(this.router.url === '/pagamento'){
+			this.toast.error({
+				detail: 'Impossivel abrir o carrinho durante a finalização de uma compra.',
+				summary: undefined,
+				duration: 5000,
+				position: 'bottomRight'
+			})
+			return;
+		}
+
 		const dialogRef = this.dialog.open(CarrinhoComponent, {
 			width: '600px'
 		});

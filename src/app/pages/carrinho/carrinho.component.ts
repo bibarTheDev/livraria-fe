@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { CarrinhoService } from '../../../shared/services/carrinhoService/carrinho.service';
 import { NgToastService } from 'ng-angular-popup';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './carrinho.component.html',
   styleUrls: ['./carrinho.component.scss']
 })
-export class CarrinhoComponent {
+export class CarrinhoComponent implements OnInit {
 	carrinho: any = null;
 
 	constructor(
@@ -17,7 +17,9 @@ export class CarrinhoComponent {
 		public dialogRef: MatDialogRef<CarrinhoComponent>,
 		private srv: CarrinhoService,
 		private toast: NgToastService,
-	) {
+	) { }
+	
+	ngOnInit(): void {
 		this.getCarrinho()
 	}
 

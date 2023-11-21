@@ -1,1 +1,29 @@
-<p>pagamento works!</p>
+<div class="pagamento-container" *ngIf="carrinho !== null">
+    <h2 class="pagamento-containerd__title"> Revise sua compra </h2>
+    <div class="pagamento-containerd__revisao">
+        <div class="pagamento-containerd__revisao__carrinho">
+            <div class="pagamento-containerd__revisao__carrinho__carrinho-item"
+                *ngFor="let i of carrinho.itens">
+                <!-- talvez mostar algum outro dado importante (preco unitario, imagem, etc) -->
+                {{ i.livro.titulo }}
+                {{ i.quantidade }}
+                {{ i.livro.valor * i.quantidade }}
+            </div>
+        </div>
+        <div class="pagamento-containerd__revisao__dados">
+            <p class="pagamento-containerd__revisao__dados__campo">Total a pagar:</p>
+            <p class="pagamento-containerd__revisao__dados__valor">{{ carrinho.valor_total }}</p>
+        </div>
+    </div>
+
+
+    <h2 class="pagamento-containerd__title"> Selecione seu metodo de pagamento </h2>
+    <div class="pagamento-containerd__metodo-pgto">
+        <p class="pagamento-containerd__metodo-pgto__campo">Método:</p>
+        <select class="pagamento-containerd__metodo-pgto__valor" [ngModel]="metodoPgto">
+            <option *ngFor="let m of metodosPgtoDisp" value="m.valor">{{m.texto}}</option>
+        </select>
+    </div>
+
+    <button class="pagamento-containerd__compra" (click)="finalizaCompra()"> Finalizar compra</button>
+</div>
