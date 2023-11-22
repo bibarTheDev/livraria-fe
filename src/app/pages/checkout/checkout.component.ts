@@ -4,6 +4,8 @@ import { Endereco } from 'src/assets/classes/endereco';
 import { CarrinhoService } from 'src/shared/services/carrinhoService/carrinho.service';
 import { UserService } from 'src/shared/services/userService/user.service';
 import { PerfilService } from '../perfil/perfilService/perfil.service';
+import { PagamentoComponent } from '../pagamento/pagamento.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-checkout',
@@ -29,6 +31,7 @@ export class CheckoutComponent implements OnInit {
 		private carrinhoSrv: CarrinhoService,
     public userSrv: UserService,
 		private toast: NgToastService,
+    private dialog: MatDialog,
     ) { }
 	
   ngOnInit(): void {
@@ -71,8 +74,16 @@ export class CheckoutComponent implements OnInit {
 			(response: any) => {
         let currCarrinho = response;
 
-        this.compareCarrinho(currCarrinho, this.carrinho)
-
+        // verigica se nao teve alteracao no carrinho
+        if(this.compareCarrinho(currCarrinho, this.carrinho)){
+          this.handlePagamento()
+        }
+        else{
+          this.toast.error({
+            detail: 'Erro ao finalizar compra. Isso pode ser um erro de conexão ou você não está logado. \n Se persistir, contate o administrador em (11) 0800-0404',
+            duration: 5000
+          })
+        }
 			},
 			(error) => {
         console.log("impossivel validar carrinho")
@@ -117,5 +128,21 @@ export class CheckoutComponent implements OnInit {
 				})
 			}
 		)
+  }
+
+  handlePagamento() {
+		const dialogRef = this.dialog.open(PagamentoComponent, {
+			width: '600px',
+      data: {
+        'metodoPgto': this.metodoPgto,
+        'endereco': this.endereco,
+        'carrinho': this.carrinho,
+      }
+		});
+
+		dialogRef.afterClosed().subscribe(result => {
+			console.log('The dialog was closed');
+		});
+
   }
 }

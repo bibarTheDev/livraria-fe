@@ -27,7 +27,7 @@ export class CarrinhoComponent implements OnInit {
 		this.dialogRef.close();
 	}
 
-	prosseguirParacheckout() {
+	prosseguirParaCheckout() {
 		this.router.navigate(['/checkout']);
 		this.dialogRef.close();
 	}

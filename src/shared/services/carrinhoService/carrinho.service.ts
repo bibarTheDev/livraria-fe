@@ -20,4 +20,9 @@ export class CarrinhoService {
 		let url = `${api.url}${api.endpoints.carrinho}?codigo=${this.userSrv.getCodCarrinho()}`
 		return this.http.get(url, this.getAuthHeader())
   	}
+	
+  	pagarCarrinho(metodoPgto: String){
+		let url = `${api.url}${api.endpoints.carrinhoPagamento}`.replace("$codigo", this.userSrv.getCodCarrinho());
+		return this.http.post(url, { 'forma_pagamento': metodoPgto }, this.getAuthHeader())
+  	}
 }

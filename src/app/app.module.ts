@@ -23,6 +23,7 @@ import { LojaComponent } from './pages/loja/loja.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { CheckoutComponent } from './pages/checkout/checkout.component';
     LoginComponent,
     CadastroComponent,
     PerfilComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    PagamentoComponent
   ],
   imports: [
     FormsModule,
