@@ -18,8 +18,13 @@ export class PerfilService {
 
 
   getUserData(cpf: String){
-		let url = `${api.url}${api.endpoints.usuario}`.replace("$cpf", cpf.valueOf());
+	let url = `${api.url}${api.endpoints.usuario}`.replace("$cpf", cpf.valueOf());
+	return this.http.get(url, this.getAuthHeader())
+  }
+  
+  getUserEnderecos(cpf: String){
+    let url = `${api.url}${api.endpoints.usuarioEnderecos}`.replace("$cpf", cpf.valueOf());
     console.log(url)
-		return this.http.get(url, this.getAuthHeader())
+	return this.http.get(url, this.getAuthHeader())
   }
 }

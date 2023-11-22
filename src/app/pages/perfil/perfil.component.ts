@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/shared/services/userService/user.service';
-import { PerfilService } from './perfilService/perfil.service';
 import { Endereco } from 'src/assets/classes/endereco';
 import { Usuario } from 'src/assets/classes/usuario';
+import { PerfilService } from './perfilService/perfil.service';
 
 @Component({
   selector: 'app-perfil',

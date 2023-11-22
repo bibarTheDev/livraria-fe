@@ -1,30 +1,40 @@
 import { Component, OnInit } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
+import { Endereco } from 'src/assets/classes/endereco';
 import { CarrinhoService } from 'src/shared/services/carrinhoService/carrinho.service';
+import { UserService } from 'src/shared/services/userService/user.service';
+import { PerfilService } from '../perfil/perfilService/perfil.service';
 
 @Component({
-  selector: 'app-pagamento',
-  templateUrl: './pagamento.component.html',
-  styleUrls: ['./pagamento.component.scss']
+  selector: 'app-checkout',
+  templateUrl: './checkout.component.html',
+  styleUrls: ['./checkout.component.scss']
 })
-export class PagamentoComponent implements OnInit {
+export class CheckoutComponent implements OnInit {
 
   carrinho: any = null;
-  metodoPgto: String = "";
+
+  endereco: Endereco | null = null;
+  enderecosDisp: Endereco[] = [];
+
+  metodoPgto: String | null = null;
   metodosPgtoDisp = [
-    { "valor": "cartao", "texto": "Cartão de crédito" },
     { "valor": "pix", "texto": "Pix" },
-    { "valor": "boleto", "texto": "Boleto bancário" },
+    // { "valor": "cartao", "texto": "Cartão de crédito" }, // desabilitados por enquanto
+    // { "valor": "boleto", "texto": "Boleto bancário" },
   ]
 
   constructor(
+    private perfilSrv: PerfilService,
 		private carrinhoSrv: CarrinhoService,
+    public userSrv: UserService,
 		private toast: NgToastService,
     ) { }
 	
   ngOnInit(): void {
     // TODO: redidecionar cliente se ele nao tiver logado
     this.getCarrinho()
+    this.getEnderecos()
   }
 
   compareLivrosCarrinho(a: any[], b: any[]) {
@@ -48,6 +58,14 @@ export class PagamentoComponent implements OnInit {
   }
 
   finalizaCompra() {
+    if(!(this.endereco && this.metodoPgto)){
+      this.toast.error({
+        detail: 'Selecione um endereço e um método de pagamento',
+        duration: 5000
+      })
+      return;
+    }
+
     // verifica se o carrinho ainda eh valido
 		this.carrinhoSrv.getCarrinho().subscribe(
 			(response: any) => {
@@ -82,4 +100,22 @@ export class PagamentoComponent implements OnInit {
 			}
 		)
 	}
+
+  getEnderecos() {
+    let cpf = this.userSrv.getCpf();
+
+    this.perfilSrv.getUserEnderecos(cpf).subscribe(
+			(response: any) => {
+        this.enderecosDisp = response as unknown as Endereco[];
+        console.log(this.enderecosDisp)
+			},
+			(error) => {
+				this.toast.error({
+					detail: 'Erro ao carregar enderecos. Isso pode ser um erro de conexão ou você não está logado. \n Se persistir, contate o administrador em (11) 0800-0404',
+					summary: error?.error?.message || null,
+					duration: 5000
+				})
+			}
+		)
+  }
 }

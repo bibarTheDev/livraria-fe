@@ -27,8 +27,8 @@ export class CarrinhoComponent implements OnInit {
 		this.dialogRef.close();
 	}
 
-	prosseguirParaPagamento() {
-		this.router.navigate(['/pagamento']);
+	prosseguirParacheckout() {
+		this.router.navigate(['/checkout']);
 		this.dialogRef.close();
 	}
 

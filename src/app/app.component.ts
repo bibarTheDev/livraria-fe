@@ -56,7 +56,7 @@ export class AppComponent {
 
 	handleCarrinho() {
 		// nao deve abrir o carrinho na pagina de pgto
-		if(this.router.url === '/pagamento'){
+		if(this.router.url === '/checkout'){
 			this.toast.error({
 				detail: 'Impossivel abrir o carrinho durante a finalização de uma compra.',
 				summary: undefined,
