@@ -55,7 +55,7 @@ export class LoginComponent implements OnInit {
 
 				this.toast.success({
 					detail: 'Login realizado com sucesso!',
-					summary: 'Login realizado com sucesso',
+					summary: 'Seja bem vindo de volta!',
 					duration: 5000,
 					position: 'bottomRight'
 				})
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
 			(error) => {
 				console.log(error)
 				this.toast.error({
-					detail: 'Erro ao realizar login',
+					detail: 'Erro ao realizar login 😢',
 					summary: error?.error?.message || null,
 					duration: 5000
 				})
@@ -74,8 +74,6 @@ export class LoginComponent implements OnInit {
 	}
 
 	realizarCadastro(): void {
-		console.log('Redirecionar para a página de cadastro');
-
 		this.dialogRef.close();
 		this.router.navigate(['/cadastro']);
 	}

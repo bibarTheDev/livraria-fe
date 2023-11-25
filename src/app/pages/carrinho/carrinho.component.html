@@ -21,12 +21,23 @@
 					<div class="detalhes-livro">
 						<p><strong>{{ item.livro.titulo }}</strong></p>
 						<p>Valor: R$ {{ item.livro.valor.toFixed(2) }}</p>
-						<p>Quantidade: {{ item.quantidade }}</p>
+						<div class="manipula-quantidade"><button mat-icon-button (click)="manipularQuantidade(item.livro.isbn, carrinho.codigo, -1)">
+							<mat-icon>remove</mat-icon>
+						</button>
+						<span><b>{{ item.quantidade }}</b></span>
+						<button mat-icon-button (click)="manipularQuantidade(item.livro.isbn, carrinho.codigo, +1)">
+							<mat-icon>add</mat-icon>
+						</button></div>
+					</div>
+					<div class="atualizar-item">
+						<button mat-icon-button (click)="removerItem(item.livro.isbn)">
+							<mat-icon>delete</mat-icon>
+						</button>
 					</div>
 					</div>
 				</div>
 				</div>
-		
+
 				<div class="resumo-carrinho">
 				<div class="total-carrinho">
 					<span><strong>Total do Carrinho: R$ {{ carrinho.valor_total.toFixed(2) }}</strong></span>

@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { LoginService } from 'src/shared/services/loginService/login.service';
-import { LoginComponent } from './pages/login/login.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { UserService } from '../shared/services/userService/user.service';
 import { NgToastService } from 'ng-angular-popup';
-import { LojaService } from './pages/loja/lojaService/loja.service';
+import { LoginService } from 'src/shared/services/loginService/login.service';
+import { UserService } from '../shared/services/userService/user.service';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
+import { LoginComponent } from './pages/login/login.component';
+import { LojaService } from './pages/loja/lojaService/loja.service';
 
 @Component({
   selector: 'app-root',
@@ -89,13 +89,6 @@ export class AppComponent {
 					this.userloginSrv.setCodCarrinho(response.codigo);
 				},
 				(error) => {
-					this.toast.error({
-						detail: 'Erro ao obter carrinho. Isso pode ser um erro de conexão ou você não está logado. \n Se persistir, contate o administrador em (11) 0800-0404',
-						summary: error?.error?.message || null,
-						duration: 5000,
-						position: 'bottomRight'
-					})
-					console.error(error);
 				}
 			);
 		}

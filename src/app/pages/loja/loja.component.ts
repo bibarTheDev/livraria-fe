@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
-import { LojaService } from './lojaService/loja.service';
 import { UserService } from 'src/shared/services/userService/user.service';
+import { LojaService } from './lojaService/loja.service';
 @Component({
 	selector: 'app-loja',
 	templateUrl: './loja.component.html',
@@ -35,7 +34,7 @@ export class LojaComponent {
 		  },
 		  (error) => {
 			this.toast.error({
-				detail: 'Erro ao carregar produtos',
+				detail: 'Erro ao carregar produtos 😢',
 				summary: error?.error?.message || null,
 				duration: 5000
 			})
@@ -70,7 +69,7 @@ export class LojaComponent {
 			},
 			(error) => {
 				let summary = 'Você precisa estar logado para adicionar ao carrinho'
-				if (error.statusCode === 401) {
+				if (error.status === 401) {
 					this.toast.error({
 						detail: 'Erro ao adicionar ao carrinho',
 						summary: summary,
@@ -78,14 +77,14 @@ export class LojaComponent {
 						position: 'bottomRight'
 					})
 					return;
-				} else if (error.statusCode === 400) {
+				} else if (error.status === 400) {
 
 					if (error.error.message.includes('pago')) {
 						summary = 'Este carrinho já está pago e não pode ser alterado. \n Contate o administrador em (11) 0800-0404 para mais informações.'
 					}
 
 					if (error.message.includes('quantidade')) {
-						summary = 'Essa quantidade não está disponível no estoque.'
+						summary = 'Essa quantidade não está disponível no estoque. 😢'
 					}
 
 					this.toast.error({

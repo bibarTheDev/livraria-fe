@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { NgToastService } from 'ng-angular-popup';
 import { Endereco } from 'src/assets/classes/endereco';
 import { CarrinhoService } from 'src/shared/services/carrinhoService/carrinho.service';
 import { UserService } from 'src/shared/services/userService/user.service';
-import { PerfilService } from '../perfil/perfilService/perfil.service';
 import { PagamentoComponent } from '../pagamento/pagamento.component';
-import { MatDialog } from '@angular/material/dialog';
+import { PerfilService } from '../perfil/perfilService/perfil.service';
 
 @Component({
   selector: 'app-checkout',
@@ -33,7 +33,7 @@ export class CheckoutComponent implements OnInit {
 		private toast: NgToastService,
     private dialog: MatDialog,
     ) { }
-	
+
   ngOnInit(): void {
     // TODO: redidecionar cliente se ele nao tiver logado
     this.getCarrinho()
@@ -80,7 +80,7 @@ export class CheckoutComponent implements OnInit {
         }
         else{
           this.toast.error({
-            detail: 'Erro ao finalizar compra. Isso pode ser um erro de conexão ou você não está logado. \n Se persistir, contate o administrador em (11) 0800-0404',
+            detail: 'Erro ao finalizar compra 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
             duration: 5000
           })
         }
@@ -88,7 +88,7 @@ export class CheckoutComponent implements OnInit {
 			(error) => {
         console.log("impossivel validar carrinho")
 				this.toast.error({
-					detail: 'Erro ao finalizar compra. Isso pode ser um erro de conexão ou você não está logado. \n Se persistir, contate o administrador em (11) 0800-0404',
+					detail: 'Erro ao finalizar compra 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
 					summary: error?.error?.message || null,
 					duration: 5000
 				})
@@ -104,7 +104,7 @@ export class CheckoutComponent implements OnInit {
 			},
 			(error) => {
 				this.toast.error({
-					detail: 'Erro ao carregar o carrinho. Isso pode ser um erro de conexão ou você não está logado. \n Se persistir, contate o administrador em (11) 0800-0404',
+					detail: 'Erro ao carregar o carrinho 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
 					summary: error?.error?.message || null,
 					duration: 5000
 				})
@@ -122,7 +122,7 @@ export class CheckoutComponent implements OnInit {
 			},
 			(error) => {
 				this.toast.error({
-					detail: 'Erro ao carregar enderecos. Isso pode ser um erro de conexão ou você não está logado. \n Se persistir, contate o administrador em (11) 0800-0404',
+					detail: 'Erro ao carregar enderecos 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
 					summary: error?.error?.message || null,
 					duration: 5000
 				})
