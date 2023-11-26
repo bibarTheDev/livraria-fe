@@ -1,0 +1,39 @@
+.close-button{
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.area-superior {
+	display: flex;
+	flex-direction: row-reverse;
+	background-color: var(--primary-color);
+}
+
+.pagamento-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	margin: .5rem;
+}
+
+.pagamento-container__button {
+	border-style: solid;
+    border-radius: 7px;
+    padding: .5rem 2rem;
+    border-width: 1.4px;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--tertiary-color);
+    background-color: var(--quaternary-color);
+    border-color: var(--tertiary-color);
+    outline: none;
+	margin-bottom: 1rem;
+}
+
+.pagamento-container__button:hover {
+	background-color: var(--tertiary-color);
+	color: var(--quaternary-color);
+}

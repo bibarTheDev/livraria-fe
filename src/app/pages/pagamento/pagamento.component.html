@@ -1,5 +1,24 @@
+<div class="area-superior">
+	<button class="close-button" mat-icon-button (click)="onNoClick()">
+		<mat-icon>close</mat-icon>
+	</button>
+</div>
 <div class="pagamento-container">
     <h2 class="pagamento-container__title"> Confirme sua compra</h2>
     <p class="pagamento-container__text"> Escaneie o QRCode abaixo com o app do seu banco e clique no botão! </p>
+	<div class="qrcodeImage">
+		<qrcode
+			[qrdata]="'https://github.com/rafaelmaestro/livrariaecom'"
+			[allowEmptyString]="true"
+			[cssClass]="'center'"
+			[colorDark]="'#000000ff'"
+			[colorLight]="'#ffffffff'"
+			[elementType]="'url'"
+			[errorCorrectionLevel]="'M'"
+			[margin]="4"
+			[scale]="1"
+			[width]="300"
+		></qrcode>
+	</div>
     <button class="pagamento-container__button" (click)="confirmarPgto()">Confirmar pagamento</button>
 </div>

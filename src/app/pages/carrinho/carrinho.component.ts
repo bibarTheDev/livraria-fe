@@ -35,8 +35,18 @@ export class CarrinhoComponent implements OnInit {
 	getCarrinho() {
 		this.srv.getCarrinho().subscribe(
 			(response: any) => {
-				this.carrinho = response
-				console.log(response)
+				this.carrinho = {
+					...response,
+					itens: response.itens.map((produto: any) => {
+						return {
+							...produto,
+							livro: {
+								...produto.livro,
+								imagem: `data:image/jpeg;base64,${produto.livro.imagem}`
+							}
+						};
+					})
+				}
 			},
 			(error) => {
 				if (error.status != 401) {

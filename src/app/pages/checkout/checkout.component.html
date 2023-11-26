@@ -1,13 +1,14 @@
 <div class="checkout-container" *ngIf="carrinho !== null">
-    <h2 class="checkout-containerd__title"> Revise sua compra </h2>
-    <div class="checkout-containerd__revisao">
-        <div class="checkout-containerd__revisao__carrinho">
+	<div class="checkout-containerd__revisao">
+		<h2 class="checkout-containerd__title"> Revise sua compra:</h2>
+		<div class="checkout-containerd__revisao__carrinho">
             <div class="checkout-containerd__revisao__carrinho__carrinho-item"
                 *ngFor="let i of carrinho.itens">
+				<img [src]="i.livro.imagem" onerror="if (this.src != 'assets/images/unavailable.jpg') this.src = 'assets/images/unavailable.jpg';" alt="Imagem do Livro">
                 <!-- talvez mostar algum outro dado importante (preco unitario, imagem, etc) -->
-                {{ i.livro.titulo }}
-                {{ i.quantidade }}
-                {{ i.livro.valor * i.quantidade }}
+                <b id="b1">R$ {{ i.livro.valor * i.quantidade }}</b>
+                <b id="b2">{{ i.livro.titulo }}</b>
+                <b id="b3">{{ i.quantidade }}x</b>
             </div>
         </div>
         <div class="checkout-containerd__revisao__dados">
@@ -16,23 +17,24 @@
         </div>
     </div>
 
-    <h2 class="checkout-containerd__title"> Escolha seu endereço de entrega </h2>
-    <div class="checkout-containerd__metodo-pgto">
-        <p class="checkout-containerd__metodo-pgto__campo">Endereço:</p>
-        <select class="checkout-containerd__metodo-pgto__valor" [(ngModel)]="endereco">
-            <option value="null"></option>
-            <option *ngFor="let e of enderecosDisp" value="{{e}}">{{e.rua}}, {{e.cidade}} - {{e.estado}}</option>
-        </select>
-    </div>
+	<div class="entrega">
+		<h2 class="checkout-containerd__title"> Escolha seu endereço de entrega:</h2>
+		<div class="checkout-containerd__metodo-pgto">
+			<select class="checkout-containerd__metodo-pgto__valor" [(ngModel)]="endereco">
+				<option value="null"></option>
+				<option *ngFor="let e of enderecosDisp" value="{{e}}">{{e.rua}}, {{e.cidade}} - {{e.estado}}</option>
+			</select>
+		</div>
+	</div>
 
-    <h2 class="checkout-containerd__title"> Escolha seu metodo de checkout </h2>
-    <div class="checkout-containerd__metodo-pgto">
-        <p class="checkout-containerd__metodo-pgto__campo">Método:</p>
-        <select class="checkout-containerd__metodo-pgto__valor" [(ngModel)]="metodoPgto">
-            <option value="null"></option>
-            <option *ngFor="let m of metodosPgtoDisp" value="{{m.valor}}">{{m.texto}}</option>
-        </select>
-    </div>
-
+	<div class="pagamento">
+		<h2 class="checkout-containerd__title"> Escolha seu metodo de pagamento:</h2>
+		<div class="checkout-containerd__metodo-pgto">
+			<select class="checkout-containerd__metodo-pgto__valor" [(ngModel)]="metodoPgto">
+				<option value="null"></option>
+				<option *ngFor="let m of metodosPgtoDisp" value="{{m.valor}}">{{m.texto}}</option>
+			</select>
+		</div>
+	</div>
     <button class="checkout-containerd__compra" (click)="finalizaCompra()"> Finalizar compra</button>
 </div>

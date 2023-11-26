@@ -11,6 +11,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { QRCodeModule } from 'angularx-qrcode';
 import { NgToastModule } from 'ng-angular-popup';
 import { HttpService } from 'src/shared/services/httpService/http.service';
 import { SharedModule } from 'src/shared/shared.module';
@@ -18,12 +19,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { CarrinhoComponent } from './pages/carrinho/carrinho.component';
+import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { LoginComponent } from './pages/login/login.component';
 import { LojaComponent } from './pages/loja/loja.component';
-import { ProdutoComponent } from './pages/produto/produto.component';
-import { PerfilComponent } from './pages/perfil/perfil.component';
-import { CheckoutComponent } from './pages/checkout/checkout.component';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
+import { PerfilComponent } from './pages/perfil/perfil.component';
+import { ProdutoComponent } from './pages/produto/produto.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 	MatFormFieldModule,
 	ReactiveFormsModule,
 	MatCardModule,
-	MatInputModule
+	MatInputModule,
+	QRCodeModule
   ],
   providers: [HttpService],
   bootstrap: [AppComponent]

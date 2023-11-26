@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CarrinhoService } from 'src/shared/services/carrinhoService/carrinho.service';
 
@@ -17,6 +17,7 @@ export class PagamentoComponent {
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     public carrinhoSrv: CarrinhoService,
+	public dialogRef: MatDialogRef<PagamentoComponent>,
     public router: Router
   ) {
     this.metodoPgto = data.metodoPgto
@@ -33,6 +34,10 @@ export class PagamentoComponent {
     }
   }
 
+  onNoClick(): void {
+	this.dialogRef.close();
+}
+
   confirmarPgto() {
 
     console.log(this.metodoPgto);
@@ -46,7 +51,7 @@ export class PagamentoComponent {
       },
       (error) => {
         // TODO: handle this
-        console.log(error)        
+        console.log(error)
       }
     )
   }

@@ -99,8 +99,19 @@ export class CheckoutComponent implements OnInit {
   getCarrinho() {
 		this.carrinhoSrv.getCarrinho().subscribe(
 			(response: any) => {
-        this.carrinho = response
-				console.log(response)
+				this.carrinho = {
+					...response,
+					valor_total: response.valor_total.toFixed(2),
+					itens: response.itens.map((produto: any) => {
+						return {
+							...produto,
+							livro: {
+								...produto.livro,
+								imagem: `data:image/jpeg;base64,${produto.livro.imagem}`
+							}
+						};
+					})
+				}
 			},
 			(error) => {
 				this.toast.error({
