@@ -1,40 +1,50 @@
 <div class="checkout-container" *ngIf="carrinho !== null">
 	<div class="checkout-containerd__revisao">
-		<h2 class="checkout-containerd__title"> Revise sua compra:</h2>
-		<div class="checkout-containerd__revisao__carrinho">
-            <div class="checkout-containerd__revisao__carrinho__carrinho-item"
-                *ngFor="let i of carrinho.itens">
-				<img [src]="i.livro.imagem" onerror="if (this.src != 'assets/images/unavailable.jpg') this.src = 'assets/images/unavailable.jpg';" alt="Imagem do Livro">
-                <!-- talvez mostar algum outro dado importante (preco unitario, imagem, etc) -->
-                <b id="b1">R$ {{ i.livro.valor * i.quantidade }}</b>
-                <b id="b2">{{ i.livro.titulo }}</b>
-                <b id="b3">{{ i.quantidade }}x</b>
-            </div>
-        </div>
-        <div class="checkout-containerd__revisao__dados">
-            <p class="checkout-containerd__revisao__dados__campo">Total a pagar:</p>
-            <p class="checkout-containerd__revisao__dados__valor">{{ carrinho.valor_total }}</p>
-        </div>
+		<h2 class="checkout-containerd__title"> Revise sua compra</h2>
+		<div style="display: flex; gap: 1.5rem;">
+			<div style="display: flex; flex-direction: column; width: 60%;">
+				<div class="checkout-containerd__revisao__carrinho">
+					<div class="checkout-containerd__revisao__carrinho__carrinho-item"
+						*ngFor="let i of carrinho.itens">
+						<div style="display: flex; align-items: center;">
+							<!-- <img src="assets/images/capa-livro-01.png"/> -->
+							<img [src]="i.livro.imagem" onerror="if (this.src != 'assets/images/unavailable.jpg') this.src = 'assets/images/unavailable.jpg';" alt="Imagem do Livro">
+							<b>{{ i.livro.titulo }}</b>
+						</div>
+						<div style="display: flex; gap: 1.5rem;">
+							<b>R$ {{ i.livro.valor * i.quantidade }}</b>
+							<span>{{ i.quantidade }}x</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div style="width: 40%; display: flex; flex-direction: column; justify-content: space-between; gap: 2rem; border-left: 1px solid var(--secondary-color); padding-left: 2rem;">
+				<div style="display: flex; flex-direction: column; gap: 2rem;">
+					<div class="checkout-containerd__revisao__dados">
+						<h4 class="checkout-containerd__revisao__dados__campo"> Total a pagar: <b>R${{ carrinho.valor_total }}</b></h4>
+					</div>
+					<div class="entrega">
+						<h4 class="checkout-containerd__title"> Escolha seu endereço de entrega:</h4>
+						<div class="checkout-containerd__metodo-pgto">
+							<select class="checkout-containerd__metodo-pgto__valor" [(ngModel)]="endereco">
+								<option value="null"></option>
+								<option *ngFor="let e of enderecosDisp" value="{{e}}">{{e.rua}}, {{e.cidade}} - {{e.estado}}</option>
+							</select>
+						</div>
+					</div>
+				
+					<div class="pagamento">
+						<h4 class="checkout-containerd__title"> Escolha seu metodo de pagamento:</h4>
+						<div class="checkout-containerd__metodo-pgto">
+							<select class="checkout-containerd__metodo-pgto__valor" [(ngModel)]="metodoPgto">
+								<option value="null"></option>
+								<option *ngFor="let m of metodosPgtoDisp" value="{{m.valor}}">{{m.texto}}</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<button class="checkout-containerd__compra" (click)="finalizaCompra()"> Finalizar compra</button>
+			</div>
+		</div>
     </div>
-
-	<div class="entrega">
-		<h2 class="checkout-containerd__title"> Escolha seu endereço de entrega:</h2>
-		<div class="checkout-containerd__metodo-pgto">
-			<select class="checkout-containerd__metodo-pgto__valor" [(ngModel)]="endereco">
-				<option value="null"></option>
-				<option *ngFor="let e of enderecosDisp" value="{{e}}">{{e.rua}}, {{e.cidade}} - {{e.estado}}</option>
-			</select>
-		</div>
-	</div>
-
-	<div class="pagamento">
-		<h2 class="checkout-containerd__title"> Escolha seu metodo de pagamento:</h2>
-		<div class="checkout-containerd__metodo-pgto">
-			<select class="checkout-containerd__metodo-pgto__valor" [(ngModel)]="metodoPgto">
-				<option value="null"></option>
-				<option *ngFor="let m of metodosPgtoDisp" value="{{m.valor}}">{{m.texto}}</option>
-			</select>
-		</div>
-	</div>
-    <button class="checkout-containerd__compra" (click)="finalizaCompra()"> Finalizar compra</button>
 </div>
