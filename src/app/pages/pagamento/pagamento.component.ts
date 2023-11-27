@@ -1,6 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { CarrinhoService } from 'src/shared/services/carrinhoService/carrinho.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class PagamentoComponent {
     @Inject(MAT_DIALOG_DATA) public data: any,
     public carrinhoSrv: CarrinhoService,
 	public dialogRef: MatDialogRef<PagamentoComponent>,
-    public router: Router
+    public router: Router,
+	private toast: NgToastService,
   ) {
     this.metodoPgto = data.metodoPgto
     this.endereco = data.endereco
@@ -47,11 +49,18 @@ export class PagamentoComponent {
     this.carrinhoSrv.pagarCarrinho(this.metodoPgto).subscribe(
       (result) => {
         console.log(result)
+		this.dialogRef.close();
         this.router.navigate(['/loja'])
+		this.toast.success({
+            detail: 'Compra finalizada com sucesso! 🎉 Obrigado pela preferência e aproveite seus livros! 😀',
+            duration: 5000
+          })
       },
       (error) => {
-        // TODO: handle this
-        console.log(error)
+		this.toast.error({
+            detail: 'Erro ao finalizar compra 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
+            duration: 5000
+          })
       }
     )
   }

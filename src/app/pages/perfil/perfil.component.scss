@@ -39,3 +39,8 @@
     gap: 5px;
     cursor: pointer;
 }
+
+.perfil__logout:hover{
+	background-color: var(--primary-color);
+	color: #fff;
+}
