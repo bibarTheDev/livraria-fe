@@ -44,3 +44,24 @@
 	background-color: var(--primary-color);
 	color: #fff;
 }
+
+.perfil__item--admin__botao {
+	width: 10rem;
+    border-color: var(--primary-color);
+    border-style: solid;
+    border-radius: 7px;
+    padding: .5rem 2rem;
+    border-width: 1.4px;
+    font-weight: 600;
+    color: #939393;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    cursor: pointer;
+}
+
+.perfil__item--admin__botao:hover {
+	background-color: var(--primary-color);
+	color: #fff;
+}

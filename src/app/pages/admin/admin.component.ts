@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
-import { RelatorioService } from './relatorioService/relatorio.service';
-import { Observable } from 'rxjs';
-import { PerfilService } from '../perfil/perfilService/perfil.service';
-import { Router } from '@angular/router';
-import { UserService } from 'src/shared/services/userService/user.service';
-import { Usuario } from 'src/assets/classes/usuario';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
+import { Observable } from 'rxjs';
+import { Usuario } from 'src/assets/classes/usuario';
+import { UserService } from 'src/shared/services/userService/user.service';
+import { PerfilService } from '../perfil/perfilService/perfil.service';
 import { EstoqueService } from './estoqueService/estoque.service';
+import { RelatorioService } from './relatorioService/relatorio.service';
 
 @Component({
   selector: 'app-admin',
@@ -29,11 +30,12 @@ export class AdminComponent {
     public perfilSrv: PerfilService,
     public router: Router,
 		private formBuilder: FormBuilder,
-  ) { 
+    private toast: NgToastService
+  ) {
 
     // checa se eh um usuario valido
     let user = userSrv.getLoggedUser();
-    
+
     if(user){
       perfilSrv.getUserData(user.cpf).subscribe(
         (response) => {
@@ -41,12 +43,22 @@ export class AdminComponent {
           console.log(userData);
 
           if(!userData.admin){
+			this.toast.error({
+				detail: 'Não permitido!',
+				summary: 'Você não tem permissão para acessar essa página 😢',
+				duration: 5000
+			})
             this.returnToLoja();
           }
         },
         (error) => {
           // TODO: error
           console.log(error);
+		  this.toast.error({
+			detail: 'Erro ao obter dados do usuário 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
+			summary: error?.error?.message || null,
+			duration: 5000
+			})
           this.returnToLoja();
         }
       );
@@ -68,10 +80,10 @@ export class AdminComponent {
       nome_autor: [,],
       email_autor: [,],
       editora: [, { validators: [Validators.required] }],
-      cnpj_editora: [,], 
-      nome_editora: [,], 
-      email_editora: [,], 
-      telefone_editora: [,], 
+      cnpj_editora: [,],
+      nome_editora: [,],
+      email_editora: [,],
+      telefone_editora: [,],
       sku: [, { validators: [Validators.required] }],
       quantidade: [, { validators: [Validators.required] }],
     });
@@ -86,8 +98,13 @@ export class AdminComponent {
     (error) => {
       // TODO: error
       console.log(error);
+	  this.toast.error({
+		detail: 'Erro ao obter dados de autores disponíveis 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
+		summary: error?.error?.message || null,
+		duration: 5000
+	})
     });
-      
+
     this.estoqueSrv.getEditoras().subscribe(
       (response: any) => {
         console.log(response);
@@ -96,6 +113,11 @@ export class AdminComponent {
     (error) => {
       // TODO: error
       console.log(error);
+	  this.toast.error({
+		detail: 'Erro ao obter dados de editoras disponíveis 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
+		summary: error?.error?.message || null,
+		duration: 5000
+	})
     });
 
   }
@@ -107,7 +129,7 @@ export class AdminComponent {
       "nome": this.livroForm.get('nome_autor')?.value,
       "email": this.livroForm.get('email_autor')?.value,
     }
-    
+
     let editora = (this.editoraSelected != 'new')
       ? this.livroForm.get('editora')?.value
       : {
@@ -129,22 +151,32 @@ export class AdminComponent {
         "isbn": this.livroForm.get('isbn')?.value
       }
     }
-    
+
     console.log(dadosLivro)
-    
-    
+
+
     if(!this.livroForm.valid){
-      console.log("invalido") 
+      console.log("invalido")
       return;
     }
- 
+
     this.estoqueSrv.cadastrarLivro(dadosLivro).subscribe(
       (response: any) => {
         console.log(response);
+		this.toast.success({
+			detail: 'Novo livro cadastrado!',
+			summary: `${dadosLivro.nome} foi cadastrado em estoque ✔`,
+			duration: 5000
+		})
     },
     (error) => {
       // TODO: error
       console.log(error);
+	  this.toast.error({
+		detail: 'Erro ao cadastrar novo livro 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
+		summary: error?.error?.message || null,
+		duration: 5000
+	})
     });
   }
 
@@ -174,10 +206,20 @@ export class AdminComponent {
       (result) => {
         // TODO: avisar no toast
         console.log(result);
+		this.toast.success({
+			detail: 'Relatório gerado com sucesso! 😀',
+			summary: `Seu relatório foi enviado para o email ${this.userSrv.getLoggedUser()?.email} 📧`,
+			duration: 5000
+		})
       },
       (error) => {
         // TODO: msg erro
         console.log(error);
+		this.toast.error({
+			detail: 'Erro ao gerar novo relatório 😢. Isso pode ser um erro de conexão ou você não está logado ❌. \n Se persistir, contate o administrador em (11) 0800-0404 📞',
+			summary: error?.error?.message || null,
+			duration: 5000
+		})
       }
     )
   }
