@@ -8,6 +8,7 @@ import { CadastroComponent } from './pages/cadastro/cadastro.component';
 import { LoginComponent } from './pages/login/login.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { CheckoutComponent } from './pages/checkout/checkout.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,9 @@ const routes: Routes = [
   },
   {
     path: "perfil", component: PerfilComponent
+  },
+  {
+    path: "admin", component: AdminComponent
   },
   {
     path: "loja", component: LojaComponent

@@ -44,4 +44,9 @@ export class PerfilComponent {
     this.userSrv.setUserToken("");
 		this.router.navigate(['/loja']);
   }
+
+  admin()
+  {
+    this.router.navigate(['/admin']);
+  }
 }

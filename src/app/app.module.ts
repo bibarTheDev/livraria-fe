@@ -25,6 +25,7 @@ import { LojaComponent } from './pages/loja/loja.component';
 import { PagamentoComponent } from './pages/pagamento/pagamento.component';
 import { PerfilComponent } from './pages/perfil/perfil.component';
 import { ProdutoComponent } from './pages/produto/produto.component';
+import { AdminComponent } from './pages/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,8 @@ import { ProdutoComponent } from './pages/produto/produto.component';
     CadastroComponent,
     PerfilComponent,
     CheckoutComponent,
-    PagamentoComponent
+    PagamentoComponent,
+    AdminComponent
   ],
   imports: [
     FormsModule,

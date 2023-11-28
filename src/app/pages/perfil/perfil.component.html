@@ -36,6 +36,7 @@
         </div>
         <div *ngIf="userData.admin" class="perfil__item--admin">
             <p class="perfil__item--admin__texto"> Você é um administrador </p>
+            <button class="perfil__item--admin__botao" (click)="admin()"> Ir para o painel de administrador </button>
         </div>
 
         <button class="perfil__logout" (click)="logout()"> <mat-icon>logout</mat-icon> Logout </button>
