@@ -1,35 +1,40 @@
 <div class="admin-container">
     <div class="admin-container__section">
-        <h2 class="admin-container__section__title">Cadastrar um livro</h2>
+        <div style="display: flex; align-items: center; gap: 5px">
+            <h2 class="admin-container__section__title">Cadastrar Livro</h2>
+            <mat-icon>menu_book</mat-icon>
+        </div>
         <form class="admin-container__section__relatorios"
             [formGroup]="livroForm" (submit)="cadastrarLivro()">
                 
             <!-- dados do livro -->
             <h4 class="admin-container__section__relatorios__subtitle">Dados do Livro</h4>
             
-            <div class="admin-container__section__relatorios__input-group">
-                <p class="admin-container__section__relatorios__input-group__title">ISBN:</p>
-                <input type="text" formControlName="isbn"
-                    class="admin-container__section__relatorios__input-group__input">
-            </div>
-            
-            <div class="admin-container__section__relatorios__input-group">
-                <p class="admin-container__section__relatorios__input-group__title">Nome:</p>
-                <input type="text" formControlName="nome"
-                    class="admin-container__section__relatorios__input-group__input">
-            </div>
-            
-            <div class="admin-container__section__relatorios__input-group">
-                <p class="admin-container__section__relatorios__input-group__title">Valor:</p>
-                <input type="number" formControlName="valor"
-                    class="admin-container__section__relatorios__input-group__input">
+            <div style="display: flex; gap: 2rem">
+                <div class="admin-container__section__relatorios__input-group">
+                    <p class="admin-container__section__relatorios__input-group__title">ISBN</p>
+                    <input type="text" formControlName="isbn"
+                        class="admin-container__section__relatorios__input-group__input">
+                </div>
+                
+                <div class="admin-container__section__relatorios__input-group">
+                    <p class="admin-container__section__relatorios__input-group__title">Nome</p>
+                    <input type="text" formControlName="nome"
+                        class="admin-container__section__relatorios__input-group__input">
+                </div>
+                
+                <div class="admin-container__section__relatorios__input-group">
+                    <p class="admin-container__section__relatorios__input-group__title">Valor</p>
+                    <input type="number" formControlName="valor"
+                        class="admin-container__section__relatorios__input-group__input">
+                </div>
             </div>
             
             <!-- dados do autor -->
             <h4 class="admin-container__section__relatorios__subtitle">Dados do Autor</h4>
 
             <div class="admin-container__section__relatorios__input-group">
-                <p class="admin-container__section__relatorios__input-group__title">Autor:</p>
+                <p class="admin-container__section__relatorios__input-group__title">Autor</p>
                 <select class="admin-container__section__relatorios__input-group__input--select"
                     formControlName="autor" [(ngModel)]="autorSelected">
                     <option value="new"> Novo Autor </option>
@@ -40,13 +45,13 @@
             <!-- dados de novo autor -->
             <div *ngIf="autorSelected == 'new'" class="admin-container__section__relatorios__hidden">
                 <div class="admin-container__section__relatorios__hidden__input-group">
-                    <p class="admin-container__section__relatorios__hidden__input-group__title">Nome do Autor:</p>
+                    <p class="admin-container__section__relatorios__hidden__input-group__title">Nome do Autor</p>
                     <input type="text" formControlName="nome_autor"
                         class="admin-container__section__relatorios__hidden__input-group__input">
                 </div>
 
                 <div class="admin-container__section__relatorios__hidden__input-group">
-                    <p class="admin-container__section__relatorios__hidden__input-group__title">Email do Autor:</p>
+                    <p class="admin-container__section__relatorios__hidden__input-group__title">Email do Autor</p>
                     <input type="email" formControlName="email_autor"
                         class="admin-container__section__relatorios__hidden__input-group__input">
                 </div>
@@ -56,7 +61,7 @@
             <h4 class="admin-container__section__relatorios__subtitle">Dados da Editora</h4>
 
             <div class="admin-container__section__relatorios__input-group">
-                <p class="admin-container__section__relatorios__input-group__title">Editora:</p>
+                <p class="admin-container__section__relatorios__input-group__title">Editora</p>
                 <select class="admin-container__section__relatorios__input-group__input--select"
                     formControlName="editora" [(ngModel)]="editoraSelected">
                     <option value="new">Nova Editora </option>
@@ -66,28 +71,30 @@
 
             <!-- dados de nova editora  -->
             <div *ngIf="editoraSelected == 'new'" class="admin-container__section__relatorios__hidden">
-                <div class="admin-container__section__relatorios__hidden__input-group">
-                    <p class="admin-container__section__relatorios__hidden__input-group__title">CNPJ da Editora:</p>
-                    <input type="text" formControlName="cnpj_editora"
-                        class="admin-container__section__relatorios__hidden__input-group__input">
-                </div>
-                
-                <div class="admin-container__section__relatorios__hidden__input-group">
-                    <p class="admin-container__section__relatorios__hidden__input-group__title">Nome da Editora:</p>
-                    <input type="text" formControlName="nome_editora"
-                        class="admin-container__section__relatorios__hidden__input-group__input">
-                </div>
-
-                <div class="admin-container__section__relatorios__hidden__input-group">
-                    <p class="admin-container__section__relatorios__hidden__input-group__title">Email da Editora:</p>
-                    <input type="email" formControlName="email_editora"
-                        class="admin-container__section__relatorios__hidden__input-group__input">
-                </div>
-
-                <div class="admin-container__section__relatorios__hidden__input-group">
-                    <p class="admin-container__section__relatorios__hidden__input-group__title">Telefone da Editora:</p>
-                    <input type="text" formControlName="telefone_editora"
-                        class="admin-container__section__relatorios__hidden__input-group__input">
+                <div style="display: flex; gap: 2rem;">
+                    <div class="admin-container__section__relatorios__hidden__input-group">
+                        <p class="admin-container__section__relatorios__hidden__input-group__title">CNPJ da Editora</p>
+                        <input type="text" formControlName="cnpj_editora"
+                            class="admin-container__section__relatorios__hidden__input-group__input">
+                    </div>
+                    
+                    <div class="admin-container__section__relatorios__hidden__input-group">
+                        <p class="admin-container__section__relatorios__hidden__input-group__title">Nome da Editora</p>
+                        <input type="text" formControlName="nome_editora"
+                            class="admin-container__section__relatorios__hidden__input-group__input">
+                    </div>
+    
+                    <div class="admin-container__section__relatorios__hidden__input-group">
+                        <p class="admin-container__section__relatorios__hidden__input-group__title">Email da Editora</p>
+                        <input type="email" formControlName="email_editora"
+                            class="admin-container__section__relatorios__hidden__input-group__input">
+                    </div>
+    
+                    <div class="admin-container__section__relatorios__hidden__input-group">
+                        <p class="admin-container__section__relatorios__hidden__input-group__title">Telefone da Editora</p>
+                        <input type="text" formControlName="telefone_editora"
+                            class="admin-container__section__relatorios__hidden__input-group__input">
+                    </div>
                 </div>
             </div>
 
@@ -95,13 +102,13 @@
             <h4 class="admin-container__section__relatorios__subtitle">Dados de Estoque</h4>
 
             <div class="admin-container__section__relatorios__input-group">
-                <p class="admin-container__section__relatorios__input-group__title">SKU:</p>
+                <p class="admin-container__section__relatorios__input-group__title">SKU</p>
                 <input type="text" formControlName="sku"
                     class="admin-container__section__relatorios__input-group__input">
             </div>
             
             <div class="admin-container__section__relatorios__input-group">
-                <p class="admin-container__section__relatorios__input-group__title">Quantidade:</p>
+                <p class="admin-container__section__relatorios__input-group__title">Quantidade</p>
                 <input type="number" formControlName="quantidade"
                     class="admin-container__section__relatorios__input-group__input">
             </div>
@@ -110,12 +117,12 @@
         </form>
     </div>
     
-    <div class="admin-container__section">
+    <div class="admin-container__section" style="border-top: 1px solid rgb(195, 195, 195); padding-top: 1rem;">
         <h2 class="admin-container__section__title">Gerar relatórios</h2>
-        <div class="admin-container__section__relatorios">
-            <button class="admin-container__section__relatorios__button" (click)='gerarRelatorio("vendas")'>Relatorio de Vendas</button>
-            <button class="admin-container__section__relatorios__button" (click)='gerarRelatorio("estoque")'>Relatorio de Estoque</button>
-            <button class="admin-container__section__relatorios__button" (click)='gerarRelatorio("usuarios")'>Relatorio de Usuários</button>
+        <div class="admin-container__section__relatorios relatorios">
+            <button class="admin-container__section__relatorios__button" (click)='gerarRelatorio("vendas")'>Relatório de Vendas</button>
+            <button class="admin-container__section__relatorios__button" (click)='gerarRelatorio("estoque")'>Relatório de Estoque</button>
+            <button class="admin-container__section__relatorios__button" (click)='gerarRelatorio("usuarios")'>Relatório de Usuários</button>
         </div>
     </div>
 </div>
