@@ -4,6 +4,7 @@
         <form class="admin-container__section__relatorios"
             [formGroup]="livroForm" (submit)="cadastrarLivro()">
                 
+            <!-- dados do livro -->
             <h4 class="admin-container__section__relatorios__subtitle">Dados do Livro</h4>
             
             <div class="admin-container__section__relatorios__input-group">
@@ -24,28 +25,73 @@
                     class="admin-container__section__relatorios__input-group__input">
             </div>
             
+            <!-- dados do autor -->
             <h4 class="admin-container__section__relatorios__subtitle">Dados do Autor</h4>
 
             <div class="admin-container__section__relatorios__input-group">
                 <p class="admin-container__section__relatorios__input-group__title">Autor:</p>
                 <select class="admin-container__section__relatorios__input-group__input--select"
-                    formControlName="autor">
-                    <option value="newAutor"> Novo Autor </option>
+                    formControlName="autor" [(ngModel)]="autorSelected">
+                    <option value="new"> Novo Autor </option>
                     <option *ngFor="let a of dadosAutores" [ngValue]="a">{{a.nome}}</option>
                 </select>
             </div>
 
+            <!-- dados de novo autor -->
+            <div *ngIf="autorSelected == 'new'" class="admin-container__section__relatorios__hidden">
+                <div class="admin-container__section__relatorios__hidden__input-group">
+                    <p class="admin-container__section__relatorios__hidden__input-group__title">Nome do Autor:</p>
+                    <input type="text" formControlName="nome_autor"
+                        class="admin-container__section__relatorios__hidden__input-group__input">
+                </div>
+
+                <div class="admin-container__section__relatorios__hidden__input-group">
+                    <p class="admin-container__section__relatorios__hidden__input-group__title">Email do Autor:</p>
+                    <input type="email" formControlName="email_autor"
+                        class="admin-container__section__relatorios__hidden__input-group__input">
+                </div>
+            </div>
+
+            <!-- dados da editora  -->
             <h4 class="admin-container__section__relatorios__subtitle">Dados da Editora</h4>
 
             <div class="admin-container__section__relatorios__input-group">
-                <p class="admin-container__section__relatorios__input-group__title">Autor:</p>
+                <p class="admin-container__section__relatorios__input-group__title">Editora:</p>
                 <select class="admin-container__section__relatorios__input-group__input--select"
-                    formControlName="editora">
-                    <option value="newEditora">Nova Editora </option>
+                    formControlName="editora" [(ngModel)]="editoraSelected">
+                    <option value="new">Nova Editora </option>
                     <option *ngFor="let e of dadosEditoras" [ngValue]="e">{{e.nome}}</option>
                 </select>
             </div>
 
+            <!-- dados de nova editora  -->
+            <div *ngIf="editoraSelected == 'new'" class="admin-container__section__relatorios__hidden">
+                <div class="admin-container__section__relatorios__hidden__input-group">
+                    <p class="admin-container__section__relatorios__hidden__input-group__title">CNPJ da Editora:</p>
+                    <input type="text" formControlName="cnpj_editora"
+                        class="admin-container__section__relatorios__hidden__input-group__input">
+                </div>
+                
+                <div class="admin-container__section__relatorios__hidden__input-group">
+                    <p class="admin-container__section__relatorios__hidden__input-group__title">Nome da Editora:</p>
+                    <input type="text" formControlName="nome_editora"
+                        class="admin-container__section__relatorios__hidden__input-group__input">
+                </div>
+
+                <div class="admin-container__section__relatorios__hidden__input-group">
+                    <p class="admin-container__section__relatorios__hidden__input-group__title">Email da Editora:</p>
+                    <input type="email" formControlName="email_editora"
+                        class="admin-container__section__relatorios__hidden__input-group__input">
+                </div>
+
+                <div class="admin-container__section__relatorios__hidden__input-group">
+                    <p class="admin-container__section__relatorios__hidden__input-group__title">Telefone da Editora:</p>
+                    <input type="text" formControlName="telefone_editora"
+                        class="admin-container__section__relatorios__hidden__input-group__input">
+                </div>
+            </div>
+
+            <!-- dados do estoque  -->
             <h4 class="admin-container__section__relatorios__subtitle">Dados de Estoque</h4>
 
             <div class="admin-container__section__relatorios__input-group">

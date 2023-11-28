@@ -19,6 +19,9 @@ export class AdminComponent {
   dadosAutores: any[] = [];
   dadosEditoras: any[] = [];
 
+  autorSelected: any | "new";
+  editoraSelected: any | "new";
+
   constructor (
 		public userSrv: UserService,
     public relatorioSrv: RelatorioService,
@@ -62,7 +65,13 @@ export class AdminComponent {
       nome: [, { validators: [Validators.required] }],
       valor: [, { validators: [Validators.required] }],
       autor: [, { validators: [Validators.required] }],
+      nome_autor: [,],
+      email_autor: [,],
       editora: [, { validators: [Validators.required] }],
+      cnpj_editora: [,], 
+      nome_editora: [,], 
+      email_editora: [,], 
+      telefone_editora: [,], 
       sku: [, { validators: [Validators.required] }],
       quantidade: [, { validators: [Validators.required] }],
     });
@@ -92,24 +101,42 @@ export class AdminComponent {
   }
 
   cadastrarLivro() {
-    if(!this.livroForm.valid){
-      return
+    let autor = (this.autorSelected != 'new')
+    ? this.livroForm.get('autor')?.value
+    : {
+      "nome": this.livroForm.get('nome_autor')?.value,
+      "email": this.livroForm.get('email_autor')?.value,
     }
+    
+    let editora = (this.editoraSelected != 'new')
+      ? this.livroForm.get('editora')?.value
+      : {
+        "cnpj": this.livroForm.get('cnpj_editora')?.value,
+        "nome": this.livroForm.get('nome_editora')?.value,
+        "email": this.livroForm.get('email_editora')?.value,
+        "telefone": this.livroForm.get('telefone_editora')?.value,
+      }
 
     let dadosLivro = {
       "isbn": this.livroForm.get('isbn')?.value,
       "nome": this.livroForm.get('nome')?.value,
       "valor": this.livroForm.get('valor')?.value,
-      "autor": this.livroForm.get('autor')?.value,
-      "editora": this.livroForm.get('editora')?.value,
+      "autor": autor,
+      "editora": editora,
       "estoque": {
-          "sku": this.livroForm.get('sku')?.value,
-          "quantidade": this.livroForm.get('quantidade')?.value,
-          "isbn": this.livroForm.get('isbn')?.value
+        "sku": this.livroForm.get('sku')?.value,
+        "quantidade": this.livroForm.get('quantidade')?.value,
+        "isbn": this.livroForm.get('isbn')?.value
       }
     }
-
+    
     console.log(dadosLivro)
+    
+    
+    if(!this.livroForm.valid){
+      console.log("invalido") 
+      return;
+    }
  
     this.estoqueSrv.cadastrarLivro(dadosLivro).subscribe(
       (response: any) => {
